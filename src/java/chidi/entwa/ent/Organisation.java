@@ -6,11 +6,13 @@
 package chidi.entwa.ent;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -23,9 +25,15 @@ public class Organisation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
+    @NotNull
     private String name;
+    @Column(nullable = false)
+    @NotNull
     private String postalAddress;
     private String postCode;
+    @Column(nullable = false)
+    @NotNull
     private String outline;
     @Embedded
     private ContactPerson contactPerson;
