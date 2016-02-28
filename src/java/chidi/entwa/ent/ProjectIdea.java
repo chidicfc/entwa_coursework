@@ -6,13 +6,15 @@
 package chidi.entwa.ent;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -42,7 +44,7 @@ public class ProjectIdea implements Serializable {
     @Column(name = "studentName", nullable = false)
     @NotNull
     private String student;
-    private enum ProjectIdeaState {
+    public enum ProjectIdeaState {
         PROVISIONAL, APPROVED, ALLOCATED, WITHDRAWN
     }
     @Column(nullable = false)
@@ -50,11 +52,13 @@ public class ProjectIdea implements Serializable {
     private ProjectIdeaState status;
     @Column(nullable = false)
     @NotNull
-    private Timestamp dateSubmitted;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateSubmitted;
     @Column(nullable = false)
     @NotNull
-    private Timestamp lastUpdated;
-    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdated;
+     
     public Long getId() {
         return id;
     }
@@ -111,19 +115,19 @@ public class ProjectIdea implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getDateSubmitted() {
+    public Date getDateSubmitted() {
         return dateSubmitted;
     }
 
-    public void setDateSubmitted(Timestamp dateSubmitted) {
+    public void setDateSubmitted(Date dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
     }
 
-    public Timestamp getLastUpdated() {
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
     
@@ -141,10 +145,7 @@ public class ProjectIdea implements Serializable {
             return false;
         }
         ProjectIdea other = (ProjectIdea) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
