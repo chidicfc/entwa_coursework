@@ -51,6 +51,7 @@ public class ProjectIdea implements Serializable {
     @Column(nullable = false)
     @NotNull
     private ProjectIdeaState status;
+    private String createdBy;
     @Column(nullable = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -117,6 +118,14 @@ public class ProjectIdea implements Serializable {
     public void setStatus(ProjectIdeaState status) {
         this.status = status;
     }
+    
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public Date getDateSubmitted() {
         return dateSubmitted;
@@ -141,7 +150,7 @@ public class ProjectIdea implements Serializable {
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
     }
-    
+       
     @Override
     public int hashCode() {
         int hash = 0;
