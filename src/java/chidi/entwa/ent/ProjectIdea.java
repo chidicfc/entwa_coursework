@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,7 +59,9 @@ public class ProjectIdea implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
-     
+    @ManyToOne
+    private Organisation organisation;
+    
     public Long getId() {
         return id;
     }
@@ -129,6 +132,14 @@ public class ProjectIdea implements Serializable {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+    
+    public Organisation getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
     }
     
     @Override

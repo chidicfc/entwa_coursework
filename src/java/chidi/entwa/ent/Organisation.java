@@ -41,8 +41,7 @@ public class Organisation implements Serializable {
     private String outline;
     @Embedded
     private ContactPerson contactPerson;
-    @OneToMany
-    @JoinColumn(name = "organisation_id")
+    @OneToMany(mappedBy = "organisation")
     private Set<ProjectIdea> projectIdeas = new HashSet<>();
 
  
