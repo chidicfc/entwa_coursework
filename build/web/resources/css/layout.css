@@ -1,0 +1,20 @@
+.ui-layout-unit, .ui-layout-unit-content {
+    overflow: hidden !important;
+    border: none !important;
+}
+
+.ui-layout-unit-header{
+    padding: 0 !important;    
+}
+
+.ui-widget-header{
+    border: none !important;
+}
+
+input[placeholder = "Search Project"] {
+  margin-right: 10px;
+}
+
+.footer{
+    font-size: 0.8em !important;
+}
