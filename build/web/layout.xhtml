@@ -10,7 +10,7 @@
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <h:outputStylesheet name="./css/layout.css"/>
-                <title>Primefaces Layout</title>
+                <title>MSc Project Ideas Database</title>
             </f:facet>
         </h:head>
 
@@ -25,7 +25,9 @@
                             <p:menuitem value="|" url=""/>
                             <p:menuitem value="Organisations" url="#" />
                             <f:facet name="options">
-                                <p:inputText placeholder="Search Project"/>
+                                <ui:insert name="top">
+                                    <p:inputText placeholder="Search Project"/>
+                                </ui:insert>
                                 <p:commandButton type="button" value="Logout"/>
                             </f:facet>
                         </p:menubar>
@@ -44,8 +46,9 @@
                 <p:layoutUnit position="west" size="200" header="" collapsible="false">
                     <h:form>
                         <p:menu>
-                            <p:menuitem value="Add a new idea" url="#" />
+                            <p:menuitem value="List all approved and allocated ideas" url="#" />
                             <p:menuitem value="List all approved (but unallocated) ideas" url="#" />
+                            <p:menuitem value="Add a new idea" url="#" />
                             <p:menuitem value="Add an organisation" url="#" />
                         </p:menu>
                     </h:form>
