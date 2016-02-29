@@ -55,7 +55,7 @@ public class Organisation implements Serializable {
     }
     @Column(nullable = false)
     @NotNull
-    private Organisation status;
+    private OrganisationState status;
     private String createdBy;
 
     public Long getId() {
@@ -114,11 +114,11 @@ public class Organisation implements Serializable {
         this.projectIdeas = projectIdeas;
     }
     
-    public Organisation getStatus() {
+    public OrganisationState getStatus() {
         return status;
     }
 
-    public void setStatus(Organisation status) {
+    public void setStatus(OrganisationState status) {
         this.status = status;
     }
     
