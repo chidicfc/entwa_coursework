@@ -6,7 +6,6 @@
 package chidi.entwa.pers;
 
 import chidi.entwa.ent.Organisation;
-import chidi.entwa.ent.ProjectIdea;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,9 +31,29 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
         super(Organisation.class);
     }
     
-     public List<Organisation> findByName(String name) {
-        TypedQuery<Organisation> query = em.createQuery("findByName", Organisation.class);
+    public List<Organisation> searchAllActiveOrganisationsByName(String name) {
+        TypedQuery<Organisation> query = em.createQuery("findByNameAndStatus", Organisation.class);
         query.setParameter("name", "%" + name.toUpperCase() + "%");
+        query.setParameter("status", Organisation.OrganisationState.ACTIVE);
+        return query.getResultList();
+    }
+    
+    public List<Organisation> searchAllArchivedOrganisationsByName(String name) {
+        TypedQuery<Organisation> query = em.createQuery("findByNameAndStatus", Organisation.class);
+        query.setParameter("name", "%" + name.toUpperCase() + "%");
+        query.setParameter("status", Organisation.OrganisationState.ARCHIVED);
+        return query.getResultList();
+    }
+    
+    public List<Organisation> getAllActiveOrganisations(){
+        TypedQuery<Organisation> query = em.createQuery("getAllByStatus", Organisation.class);
+        query.setParameter("status", Organisation.OrganisationState.ACTIVE);
+        return query.getResultList();
+    }
+    
+    public List<Organisation> getAllArchivedOrganisations(){
+        TypedQuery<Organisation> query = em.createQuery("getAllByStatus", Organisation.class);
+        query.setParameter("status", Organisation.OrganisationState.ARCHIVED);
         return query.getResultList();
     }
     

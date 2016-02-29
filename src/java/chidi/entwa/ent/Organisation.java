@@ -26,8 +26,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 
 @NamedQueries({
-    @NamedQuery(name = "findByName", query = "SELECT o FROM Organisation o WHERE UPPER(o.name) LIKE :name ORDER BY o.name"),
-    @NamedQuery(name = "getAll", query = "SELECT o from Organisation o ORDER BY o.name")
+    @NamedQuery(name = "findByNameAndStatus", query = "SELECT o FROM Organisation o WHERE UPPER(o.name) LIKE :name AND o.status = :status ORDER BY o.name"),
+    @NamedQuery(name = "getAllByStatus", query = "SELECT o from Organisation o WHERE o.status = :status ORDER BY o.name")
 })
 
 public class Organisation implements Serializable {
@@ -50,6 +50,12 @@ public class Organisation implements Serializable {
     private ContactPerson contactPerson;
     @OneToMany(mappedBy = "organisation")
     private Set<ProjectIdea> projectIdeas = new HashSet<>();
+    public enum OrganisationState {
+        ACTIVE, ARCHIVED
+    }
+    @Column(nullable = false)
+    @NotNull
+    private Organisation status;
     private String createdBy;
 
     public Long getId() {
@@ -106,6 +112,14 @@ public class Organisation implements Serializable {
 
     public void setProjectIdeas(Set<ProjectIdea> projectIdeas) {
         this.projectIdeas = projectIdeas;
+    }
+    
+    public Organisation getStatus() {
+        return status;
+    }
+
+    public void setStatus(Organisation status) {
+        this.status = status;
     }
     
     public String getCreatedBy() {
