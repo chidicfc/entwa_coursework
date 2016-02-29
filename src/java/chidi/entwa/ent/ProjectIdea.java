@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,11 @@ import javax.validation.constraints.NotNull;
  * @author chidi
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findByTitle", query = "SELECT p FROM ProjectIdea p WHERE UPPER(p.title) LIKE :title ORDER BY p.title"),
+    @NamedQuery(name = "getAllApprovedButUnallocated", query = "SELECT p from ProjectIdea p WHERE p.status = :status"),
+    @NamedQuery(name = "getAllApprovedOrAllocated", query = "SELECT p from ProjectIdea p WHERE p.status = :status1 OR p.status = :status2")
+})
 @Table(name = "project_idea")
 public class ProjectIdea implements Serializable {
 
@@ -42,8 +49,7 @@ public class ProjectIdea implements Serializable {
     @Column(name = "deliverables", nullable = false)
     @NotNull
     private String anticipatedDeliverables;
-    @Column(name = "studentName", nullable = false)
-    @NotNull
+    @Column(name = "studentName")
     private String student;
     public enum ProjectIdeaState {
         PROVISIONAL, APPROVED, ALLOCATED, WITHDRAWN
