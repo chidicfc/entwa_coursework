@@ -6,9 +6,12 @@
 package chidi.entwa.pers;
 
 import chidi.entwa.ent.Organisation;
+import chidi.entwa.ent.ProjectIdea;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +30,12 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
 
     public OrganisationFacade() {
         super(Organisation.class);
+    }
+    
+     public List<Organisation> findByName(String name) {
+        TypedQuery<Organisation> query = em.createQuery("findByName", Organisation.class);
+        query.setParameter("name", "%" + name.toUpperCase() + "%");
+        return query.getResultList();
     }
     
 }
