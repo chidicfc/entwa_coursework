@@ -1,6 +1,21 @@
 .ui-layout-unit, .ui-layout-unit-content {
-    overflow: hidden !important;
     border: none !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow: hidden !important;
+}
+
+.ui-layout-west .ui-layout-unit-content {
+    overflow: hidden !important;
+}
+
+.ui-layout-south .ui-layout-unit-content {
+    overflow: hidden !important;
+}
+
+.ui-layout-south .ui-layout-unit-content {
+    overflow: auto !important;
 }
 
 .ui-layout-unit-header{
