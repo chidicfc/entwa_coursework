@@ -6,35 +6,66 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
-
+    <ui:define name="top">
+        <p:inputText placeholder="Search Organisations"/>
+    </ui:define>
+    
     <ui:define name="content">
-        <h3>All approved or allocated project ideas</h3>
+        <h3>Organisations</h3>
         <p:panelGrid>
             <f:facet name="header">
                 <p:row>
-                    <p:column>Idea #</p:column>
-                    <p:column>Project title</p:column>
-                    <p:column>Owner (Organisation)</p:column>
-                    <p:column>Last Updated</p:column>
-                    <p:column>Status</p:column>
+                    <p:column>Reference number</p:column>
+                    <p:column>Organisation name</p:column>
+                    <p:column>Postal address</p:column>
+                    <p:column>Outline of what your organisation does</p:column>
+                    <p:column>Contact name</p:column>
                 </p:row>
 
             </f:facet>
 
             <p:row>
-                <p:column>1000</p:column>
-                <p:column>Camera Hacking</p:column>
-                <p:column>Dr. Jim Briggs (SoC/UoP)</p:column>
-                <p:column>Feb 9, 2016</p:column>
-                <p:column>A</p:column>
+                <p:column>
+                    <p:outputLabel value="1200" />    
+                </p:column>
+                <p:column>
+                    <h:form>
+                        <h:commandLink value="Nestle" action="viewOrganisation.xhtml"/>  
+                    </h:form>
+                    <h:form>
+                        <h:commandButton image="../resources/images/pencil-icon.png"/>
+                        <h:commandButton image="../resources/images/archive-icon.png"/>
+                    </h:form>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Hong Kong" />    
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Fragrance Seller" /> 
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="John Hopkins" />
+                </p:column>
             </p:row>
-            
-              <p:row>
-                <p:column>1001</p:column>
-                <p:column>Camera Hacking 1</p:column>
-                <p:column>Dr. Jim Briggs (SoC/UoP)</p:column>
-                <p:column>Feb 10, 2016</p:column>
-                <p:column>A</p:column>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="1300" />
+                </p:column>
+                <p:column>
+                    <h:form>
+                        <h:commandLink value="UoP" action="viewOrganisation.xhtml"/> 
+                    </h:form>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Hants" />
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="System to manage efficiently ..." />
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Steve Clarke" />
+                </p:column>
             </p:row>
         </p:panelGrid>
     </ui:define>
