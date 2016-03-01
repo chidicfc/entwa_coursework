@@ -14,10 +14,6 @@
     overflow: hidden !important;
 }
 
-.ui-layout-south .ui-layout-unit-content {
-    overflow: auto !important;
-}
-
 .ui-layout-unit-header{
     padding: 0 !important;    
 }

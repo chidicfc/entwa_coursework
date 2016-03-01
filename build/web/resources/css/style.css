@@ -5,7 +5,3 @@ input[type = "image"] {
 h3 {
     margin-top: 0px !important;
 }
-
-.content{
-    overflow: scroll !important;
-}
