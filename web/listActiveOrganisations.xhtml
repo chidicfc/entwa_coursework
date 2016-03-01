@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./layout.xhtml">
+
+    <ui:define name="content">
+        <h3>All approved or allocated project ideas</h3>
+        <p:panelGrid>
+            <f:facet name="header">
+                <p:row>
+                    <p:column>Idea #</p:column>
+                    <p:column>Project title</p:column>
+                    <p:column>Owner (Organisation)</p:column>
+                    <p:column>Last Updated</p:column>
+                    <p:column>Status</p:column>
+                </p:row>
+
+            </f:facet>
+
+            <p:row>
+                <p:column>1000</p:column>
+                <p:column>Camera Hacking</p:column>
+                <p:column>Dr. Jim Briggs (SoC/UoP)</p:column>
+                <p:column>Feb 9, 2016</p:column>
+                <p:column>A</p:column>
+            </p:row>
+            
+              <p:row>
+                <p:column>1001</p:column>
+                <p:column>Camera Hacking 1</p:column>
+                <p:column>Dr. Jim Briggs (SoC/UoP)</p:column>
+                <p:column>Feb 10, 2016</p:column>
+                <p:column>A</p:column>
+            </p:row>
+        </p:panelGrid>
+    </ui:define>
+
+</ui:composition>
