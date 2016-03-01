@@ -22,7 +22,7 @@
     border: none !important;
 }
 
-input[placeholder = "Search Project"] {
+input[placeholder = "Search Projects"], input[placeholder = "Search Organisations"], input[placeholder = "Search Archive"] {
   margin-right: 10px;
 }
 
