@@ -36,10 +36,24 @@ public class Organisation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(nullable = false)
+    @NotNull
     private String name;
-    private String postalAddress;  
+    
+    @Column(nullable = false)
+    @NotNull
+    private String postalAddress; 
+    
+    @Column(nullable = false)
+    @NotNull
     private String postCode;
+    
+    @Column(nullable = false)
+    @NotNull
     private String outline;
+    
+    @Column(nullable = false)
     @Embedded
     private ContactPerson contactPerson;
     
@@ -49,8 +63,13 @@ public class Organisation implements Serializable {
     public enum OrganisationState {
         ACTIVE, ARCHIVED
     }
+    
+    @Column(nullable = false)
+    @NotNull
     private OrganisationState status;
     
+    @Column(nullable = false)
+    @NotNull
     private String createdBy;
 
     public Long getId() {

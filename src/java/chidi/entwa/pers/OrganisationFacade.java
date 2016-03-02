@@ -34,6 +34,7 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     
     public Organisation createOrganisation(Organisation organisation, ContactPerson contactPerson) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
+        organisation.setCreatedBy("Chidi Uba");
         organisation.setContactPerson(contactPerson);
         em.persist(organisation);
         return organisation;
