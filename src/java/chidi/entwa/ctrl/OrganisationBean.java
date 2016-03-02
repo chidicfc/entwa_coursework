@@ -5,9 +5,9 @@
  */
 package chidi.entwa.ctrl;
 
+import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.ent.ContactPerson;
 import chidi.entwa.ent.Organisation;
-import chidi.entwa.pers.OrganisationFacade;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -29,7 +29,7 @@ public class OrganisationBean {
     }
 
     @EJB
-    private OrganisationFacade organisationFacade;
+    private OrganisationService organisationService;
     private Organisation organisation = new Organisation();
     private ContactPerson contactPerson = new ContactPerson();
 
@@ -50,13 +50,14 @@ public class OrganisationBean {
     }
 
     public String doCreateOrganisation() {
-        System.out.println("in here");
-        organisationFacade.createOrganisation(organisation, contactPerson);
+        organisationService.addNewOrganisation(organisation, contactPerson);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation created",
                         "The organisation" + organisation.getName() + " has been created"));
 
         return "submitAProjectIdea.xhtml";
     }
+    
+    
 
 }
