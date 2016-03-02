@@ -19,8 +19,8 @@
             <p:row>
                 <p:column colspan="7">
                     <h:form>
-                        <p:outputLabel for="select_organisation" value="Select organisation that the new idea is with:" /><br/><br/>
-                        <p:selectOneMenu id="select_organisation" panelStyle="width:180px" effect="fade" style="width:160px">
+                        <p:outputLabel for="selectOrganisation" value="Select organisation that the new idea is with:" /><br/><br/>
+                        <p:selectOneMenu id="selectOrganisation" panelStyle="width:180px" effect="fade" style="width:160px">
                             <f:selectItems />
 
                             <p:column>
@@ -44,32 +44,32 @@
 
             <p:row>
                 <p:column colspan="7">
-                    <h:form>
+                    <h:form id="manageOrganisationForm">
                         <h:panelGrid columns="2">
 
                             <h:outputLabel value="Organisation name:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.organisation.name}" />
 
                             <h:outputLabel value="Reference number:" />
-                            <h:outputLabel value="" />
+                            <h:outputLabel value="#{organisationBean.organisation.id}" />
 
                             <h:outputLabel value="Postal address:" />
-                            <h:inputTextarea rows="4" cols="25" />
+                            <h:inputTextarea rows="4" cols="25" value="#{organisationBean.organisation.postalAddress}"/>
 
                             <h:outputLabel value="Post code:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.organisation.postCode}" />
 
                             <h:outputLabel value="Outline of what your organisation does:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.organisation.outline}" />
 
                             <h:outputLabel value="Contact name:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.contactPerson.contactName}" />
 
                             <h:outputLabel value="Telephone number:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.contactPerson.telephoneNumber}" />
 
                             <h:outputLabel value="Email address:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{organisationBean.contactPerson.emailAddress}" />
 
                             <h:panelGroup />
                             <h:panelGroup />
@@ -77,7 +77,9 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Organisation" />
+                            <h:commandButton value="Create Organisation" action="#{organisationBean.doCreateOrganisation}">
+                                
+                            </h:commandButton>
                             <h:commandButton value="Edit Organisation" />
                         </h:panelGrid>
                     </h:form>

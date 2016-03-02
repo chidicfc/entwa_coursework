@@ -5,6 +5,7 @@
  */
 package chidi.entwa.pers;
 
+import chidi.entwa.ent.ContactPerson;
 import chidi.entwa.ent.Organisation;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -29,6 +30,13 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
 
     public OrganisationFacade() {
         super(Organisation.class);
+    }
+    
+    public Organisation createOrganisation(Organisation organisation, ContactPerson contactPerson) {
+        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
+        organisation.setContactPerson(contactPerson);
+        em.persist(organisation);
+        return organisation;
     }
     
     public List<Organisation> searchAllActiveOrganisationsByName(String name) {

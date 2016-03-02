@@ -6,9 +6,7 @@
 package chidi.entwa.ent;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -16,14 +14,8 @@ import javax.validation.constraints.NotNull;
  */
 @Embeddable
 public class ContactPerson implements Serializable {
-    @Column(nullable = false)
-    @NotNull
     private String contactName;
-    @Column(nullable = false)
-    @NotNull
     private String telephoneNumber;
-    @Column(nullable = false)
-    @NotNull
     private String emailAddress;
 
     public String getContactName() {

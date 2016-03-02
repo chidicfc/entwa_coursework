@@ -36,26 +36,21 @@ public class Organisation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false)
-    @NotNull
     private String name;
-    @Column(nullable = false)
-    @NotNull
-    private String postalAddress;
+    private String postalAddress;  
     private String postCode;
-    @Column(nullable = false)
-    @NotNull
     private String outline;
     @Embedded
     private ContactPerson contactPerson;
+    
     @OneToMany(mappedBy = "organisation")
     private Set<ProjectIdea> projectIdeas = new HashSet<>();
+    
     public enum OrganisationState {
         ACTIVE, ARCHIVED
     }
-    @Column(nullable = false)
-    @NotNull
     private OrganisationState status;
+    
     private String createdBy;
 
     public Long getId() {
@@ -145,10 +140,7 @@ public class Organisation implements Serializable {
             return false;
         }
         Organisation other = (Organisation) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
