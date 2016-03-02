@@ -19,7 +19,7 @@
             <p:row>
                 <p:column colspan="7">
                     <h:form>
-                        <p:outputLabel for="select_organisation" value="Select organisation that the new idea is with:" /><br/>
+                        <p:outputLabel for="select_organisation" value="Select organisation that the new idea is with:" /><br/><br/>
                         <p:selectOneMenu id="select_organisation" panelStyle="width:180px" effect="fade" style="width:160px">
                             <f:selectItems />
 
@@ -33,10 +33,56 @@
                 <p:column colspan="7">  </p:column>
             </p:row>
 
+            <p:row>
+                <p:column colspan="7">
+                    <p:outputLabel value="About you and your organisation..." />
+                </p:column>
+                <p:column colspan="7">
+                    <p:outputLabel value="About the project idea..." />
+                </p:column>
+            </p:row>
 
+            <p:row>
+                <p:column colspan="7">
+                    <h:form>
+                        <h:panelGrid columns="2">
 
+                            <h:outputLabel value="Organisation name:" />
+                            <h:inputText value="" />
 
+                            <h:outputLabel value="Reference number:" />
+                            <h:outputLabel value="" />
 
+                            <h:outputLabel value="Postal address:" />
+                            <h:inputTextarea rows="4" cols="25" />
+
+                            <h:outputLabel value="Post code:" />
+                            <h:inputText value="" />
+
+                            <h:outputLabel value="Outline of what your organisation does:" />
+                            <h:inputText value="" />
+
+                            <h:outputLabel value="Contact name:" />
+                            <h:inputText value="" />
+
+                            <h:outputLabel value="Telephone number:" />
+                            <h:inputText value="" />
+
+                            <h:outputLabel value="Email address:" />
+                            <h:inputText value="" />
+
+                            <h:panelGroup />
+                            <h:panelGroup />
+                            
+                            <h:panelGroup />
+                            <h:panelGroup />
+
+                            <h:commandButton value="Create Organisation" />
+                            <h:commandButton value="Edit Organisation" />
+                        </h:panelGrid>
+                    </h:form>
+                </p:column>
+            </p:row>
         </p:panelGrid>
 
 
