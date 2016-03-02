@@ -73,12 +73,58 @@
 
                             <h:panelGroup />
                             <h:panelGroup />
-                            
+
                             <h:panelGroup />
                             <h:panelGroup />
 
                             <h:commandButton value="Create Organisation" />
                             <h:commandButton value="Edit Organisation" />
+                        </h:panelGrid>
+                    </h:form>
+                </p:column>
+
+                <p:column colspan="7">
+                    <h:form>
+                        <h:panelGrid columns="2">
+
+                            <h:outputLabel value="Project title:" />
+                            <h:inputText value="" />
+
+                            <h:outputLabel value="Reference number:" />
+                            <h:outputLabel value="" />
+
+                            <h:outputLabel value="Aims and objectives:" />
+                            <h:inputTextarea rows="4" cols="25" />
+
+                            <h:outputLabel value="Academic question to be answered (blank if unknown):" />
+                            <h:inputTextarea rows="4" cols="25" />
+
+                            <h:outputLabel value="Anticipated deliverables:" />
+                            <h:inputTextarea rows="4" cols="25" />
+
+                            <h:outputLabel value="Student for whom project has been devised (blank if unknown):" />
+                            <h:inputText value="" />
+
+                            <p:outputLabel for="Status" value="Status:" />
+                            <p:selectOneMenu id="Status" value="Status" style="width:125px">
+                                <f:selectItem itemLabel="Select status" itemValue="Select status" />
+                                <f:selectItem itemLabel="Allocated" itemValue="Allocated" />
+                                <f:selectItem itemLabel="Approved" itemValue="Approved" />
+                                <f:selectItem itemLabel="Provisional" itemValue="Provisional" />
+                                <f:selectItem itemLabel="Withdrawn" itemValue="Withdrawn" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Date submitted/Last updated:" />
+                            <h:outputLabel value="Mar 2, 2016 5:44:07 AM GMT" />
+
+                            <h:panelGroup />
+                            <h:panelGroup />
+
+                            <h:panelGroup />
+                            <h:panelGroup />
+
+                            <h:commandButton value="Create Project Idea" />
+                            <h:commandButton value="Edit Project Idea" />
                         </h:panelGrid>
                     </h:form>
                 </p:column>
