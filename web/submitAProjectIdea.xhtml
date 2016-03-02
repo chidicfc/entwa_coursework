@@ -1,16 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./layout.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./layout.xhtml">
 
     <ui:define name="top">
-        
+
     </ui:define>
 
     <ui:define name="content">
         <h3>Submit a project idea </h3>
         <p:outputLabel value="In order to assist us in setting up and managing subsequent project contacts it would be helpful if the following information could be supplied." />
+        <p:panelGrid>
+
+            <p:row>
+                <p:column colspan="7">
+                    <h:form>
+                        <p:outputLabel for="select_organisation" value="Select organisation that the new idea is with:" /><br/>
+                        <p:selectOneMenu id="select_organisation" panelStyle="width:180px" effect="fade" style="width:160px">
+                            <f:selectItems />
+
+                            <p:column>
+                                <h:outputText value="test" />
+                            </p:column>
+                        </p:selectOneMenu> <br/>
+                        <h:commandButton value="Edit" /> <h:commandButton value="Archive" />
+                    </h:form>
+                </p:column>
+                <p:column colspan="7">  </p:column>
+            </p:row>
+
+
+
+
+
+        </p:panelGrid>
+
+
     </ui:define>
 
 </ui:composition>
