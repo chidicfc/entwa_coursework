@@ -7,6 +7,7 @@ package chidi.entwa.bus;
 
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.pers.OrganisationFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -25,5 +26,9 @@ public class OrganisationService {
     public Organisation addNewOrganisation (Organisation organisation){
         organisationFacade.createOrganisation(organisation);
         return organisation;
+    }
+    
+    public List<Organisation> findAllOrganisations(){
+        return organisationFacade.getAllActiveOrganisations();
     }
 }

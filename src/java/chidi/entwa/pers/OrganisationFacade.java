@@ -53,8 +53,8 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     }
     
     public List<Organisation> getAllActiveOrganisations(){
-        TypedQuery<Organisation> query = em.createQuery("getAllByStatus", Organisation.class);
-        query.setParameter("status", Organisation.OrganisationState.ACTIVE);
+        TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o ORDER BY o.name", Organisation.class);
+        //query.setParameter("status", Organisation.OrganisationState.ACTIVE);
         return query.getResultList();
     }
     

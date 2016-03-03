@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -184,7 +183,8 @@ public class Organisation implements Serializable {
 
     @Override
     public String toString() {
-        return "chidi.entwa.ent.Organisation[ id=" + id + " ]";
+        //return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+        return name;
     }
     
 }
