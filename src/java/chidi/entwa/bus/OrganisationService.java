@@ -5,7 +5,6 @@
  */
 package chidi.entwa.bus;
 
-import chidi.entwa.ent.ContactPerson;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.pers.OrganisationFacade;
 import javax.ejb.EJB;
@@ -23,8 +22,8 @@ public class OrganisationService {
     @EJB
     private OrganisationFacade organisationFacade;
     
-    public Organisation addNewOrganisation (Organisation organisation, ContactPerson contactPerson){
-        organisationFacade.createOrganisation(organisation, contactPerson);
+    public Organisation addNewOrganisation (Organisation organisation){
+        organisationFacade.createOrganisation(organisation);
         return organisation;
     }
 }
