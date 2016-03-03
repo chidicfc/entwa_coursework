@@ -20,7 +20,7 @@
                 <p:column colspan="7">
                     <h:form>
                         <p:outputLabel for="selectOrganisation" value="Select organisation that the new idea is with:" /><br/><br/>
-                        <p:selectOneMenu id="selectOrganisation" value="#{organisationBean.organisation}" panelStyle="width:180px" effect="fade" style="width:160px">
+                        <p:selectOneMenu id="selectOrganisation" value="#{organisationBean.organisation}" panelStyle="width:180px" effect="fade" style="width:160px" converter="organisationConverter">
       
                             <f:selectItems value="#{organisationBean.organisations}"/> 
                         </p:selectOneMenu> <br/>

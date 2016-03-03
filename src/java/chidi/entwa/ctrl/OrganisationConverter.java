@@ -34,7 +34,7 @@ public class OrganisationConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value != null && value instanceof Organisation) {
             //throw new Error("object is not of type Organisation");
-            return ((Organisation) value).getId().toString();
+            return value.toString();
         } else {
             throw new Error("object is not of type Organisation1");
         }
