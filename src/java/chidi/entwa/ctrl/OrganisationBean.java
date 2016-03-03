@@ -80,6 +80,17 @@ public class OrganisationBean {
         return organisationFacade;
     }
     
+    public String doGetOrganisation() {
+        return "submitAProjectIdea.xhtml";
+    }
     
-
+    public String doEditOrganisation() {
+        organisationService.editOrganisation(organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
+                        "The organisation" + organisation.getName() + " has been edited"));
+        
+        return "submitAProjectIdea.xhtml";
+    }
+    
 }

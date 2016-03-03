@@ -31,11 +31,10 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
         super(Organisation.class);
     }
     
-    public Organisation createOrganisation(Organisation organisation) {
+    public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         organisation.setCreatedBy("Chidi Uba"); // change this
         em.persist(organisation);
-        return organisation;
     }
     
     public List<Organisation> searchAllActiveOrganisationsByName(String name) {

@@ -23,12 +23,19 @@ public class OrganisationService {
     @EJB
     private OrganisationFacade organisationFacade;
     
-    public Organisation addNewOrganisation (Organisation organisation){
+    public void addNewOrganisation (Organisation organisation){
         organisationFacade.createOrganisation(organisation);
-        return organisation;
     }
     
     public List<Organisation> findAllOrganisations(){
         return organisationFacade.getAllActiveOrganisations();
+    }
+    
+    public void editOrganisation (Organisation organisation){
+        organisationFacade.edit(organisation);
+    }
+    
+    public Organisation findOrganisation (Long id) {
+        return organisationFacade.find(id);
     }
 }

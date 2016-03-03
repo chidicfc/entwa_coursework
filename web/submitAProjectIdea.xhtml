@@ -24,7 +24,7 @@
                                          filter="true" filterMatchMode="contains" converter="organisationConverter">
                             <f:selectItems value="#{organisationBean.organisations}" /> 
                         </p:selectOneMenu> <br/>
-                        <h:commandButton value="Edit" /> <h:commandButton value="Archive" />
+                        <h:commandButton value="Edit" action="#{organisationBean.doGetOrganisation}"/> <h:commandButton value="Archive" />
                     </h:form>
                 </p:column>
                 <p:column colspan="7">  </p:column>
