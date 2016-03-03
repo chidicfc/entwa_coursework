@@ -30,37 +30,43 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     public OrganisationFacade() {
         super(Organisation.class);
     }
-    
+
     public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         organisation.setCreatedBy("Chidi Uba"); // change this
         em.persist(organisation);
     }
-    
+
+    public void editOrganisation(Organisation organisation) {
+        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
+        organisation.setCreatedBy("Chidi Uba"); // change this
+        em.merge(organisation);
+    }
+
     public List<Organisation> searchAllActiveOrganisationsByName(String name) {
         TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE UPPER(o.name) LIKE :name AND o.status = :status ORDER BY o.name", Organisation.class);
         query.setParameter("name", "%" + name.toUpperCase() + "%");
         query.setParameter("status", Organisation.OrganisationState.ACTIVE);
         return query.getResultList();
     }
-    
+
     public List<Organisation> searchAllArchivedOrganisationsByName(String name) {
         TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE UPPER(o.name) LIKE :name AND o.status = :status ORDER BY o.name", Organisation.class);
         query.setParameter("name", "%" + name.toUpperCase() + "%");
         query.setParameter("status", Organisation.OrganisationState.ARCHIVED);
         return query.getResultList();
     }
-    
-    public List<Organisation> getAllActiveOrganisations(){
+
+    public List<Organisation> getAllActiveOrganisations() {
         TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE o.status = :status ORDER BY o.name", Organisation.class);
         query.setParameter("status", Organisation.OrganisationState.ACTIVE);
         return query.getResultList();
     }
-    
-    public List<Organisation> getAllArchivedOrganisations(){
+
+    public List<Organisation> getAllArchivedOrganisations() {
         TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE o.status = :status ORDER BY o.name", Organisation.class);
         query.setParameter("status", Organisation.OrganisationState.ARCHIVED);
         return query.getResultList();
     }
-    
+
 }

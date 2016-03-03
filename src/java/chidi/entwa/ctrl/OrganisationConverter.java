@@ -5,7 +5,6 @@
  */
 package chidi.entwa.ctrl;
 
-import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.pers.OrganisationFacade;
 import java.util.regex.Matcher;
@@ -16,7 +15,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
 /**
  *
@@ -24,9 +22,6 @@ import javax.inject.Inject;
  */
 @FacesConverter("organisationConverter")
 public class OrganisationConverter implements Converter {
-
-    @Inject
-    private OrganisationService organisationService;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

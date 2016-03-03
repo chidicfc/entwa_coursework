@@ -32,7 +32,7 @@ public class OrganisationService {
     }
     
     public void editOrganisation (Organisation organisation){
-        organisationFacade.edit(organisation);
+        organisationFacade.editOrganisation(organisation);
     }
     
     public Organisation findOrganisation (Long id) {

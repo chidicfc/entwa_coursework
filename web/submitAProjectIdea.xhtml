@@ -49,6 +49,9 @@
 
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{organisationBean.organisation.id}" />
+                            
+                            <h:inputHidden value="#{organisationBean.organisation.id}" />
+                            <h:panelGroup />
 
                             <h:outputLabel value="Postal address:" />
                             <h:inputTextarea rows="4" cols="25" value="#{organisationBean.organisation.postalAddress}"/>
@@ -77,7 +80,7 @@
                             <h:commandButton value="Create Organisation" action="#{organisationBean.doCreateOrganisation}">
 
                             </h:commandButton>
-                            <h:commandButton value="Edit Organisation" />
+                            <h:commandButton value="Edit Organisation" action="#{organisationBean.doEditOrganisation}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:column>
