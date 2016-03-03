@@ -32,19 +32,19 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     }
     
     public List<ProjectIdea> findByTitle(String title) {
-        TypedQuery<ProjectIdea> query = em.createQuery("findByTitle", ProjectIdea.class);
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p FROM ProjectIdea p WHERE UPPER(p.title) LIKE :title ORDER BY p.title", ProjectIdea.class);
         query.setParameter("title", "%" + title.toUpperCase() + "%");
         return query.getResultList();
     }
     
     public List<ProjectIdea> getAllApprovedButUnallocatedIdeas(){
-        TypedQuery<ProjectIdea> query = em.createQuery("getAllApprovedButUnallocated", ProjectIdea.class);
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.status = :status ORDER BY p.title", ProjectIdea.class);
         query.setParameter("status", ProjectIdea.ProjectIdeaState.APPROVED);
         return query.getResultList();
     }
     
     public List<ProjectIdea> getAllApprovedOrAllocatedIdeas(){
-        TypedQuery<ProjectIdea> query = em.createQuery("getAllApprovedOrAllocated", ProjectIdea.class);
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.status = :status1 OR p.status = :status2 ORDER BY p.title", ProjectIdea.class);
         query.setParameter("status1", ProjectIdea.ProjectIdeaState.APPROVED);
         query.setParameter("status2", ProjectIdea.ProjectIdeaState.ALLOCATED);
         return query.getResultList();
