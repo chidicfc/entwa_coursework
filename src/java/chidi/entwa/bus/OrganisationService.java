@@ -35,7 +35,7 @@ public class OrganisationService {
         organisationFacade.editOrganisation(organisation);
     }
     
-    public Organisation findOrganisation (Long id) {
-        return organisationFacade.find(id);
+    public void archiveOrganisation (Organisation organisation) {
+        organisationFacade.archiveOrganisation(organisation);
     }
 }

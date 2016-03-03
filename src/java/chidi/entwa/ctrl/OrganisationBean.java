@@ -9,7 +9,6 @@ import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.pers.OrganisationFacade;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -57,7 +56,7 @@ public class OrganisationBean {
     }
 
     public void setOrganisations(List<Organisation> organisations) {
-        organisations = getAllOrganisations();
+        //organisations = getAllOrganisations(); // is this needed?
         this.organisations = organisations;
     }
     
@@ -90,6 +89,15 @@ public class OrganisationBean {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
                         "The organisation" + organisation.getName() + " has been edited"));
         
+        return "submitAProjectIdea.xhtml";
+    }
+    
+    public String doArchiveOrganisation() {
+        organisationService.archiveOrganisation(organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
+                        "The organisation" + organisation.getName() + " has been archived"));
+        setOrganisations(getAllOrganisations());
         return "submitAProjectIdea.xhtml";
     }
     

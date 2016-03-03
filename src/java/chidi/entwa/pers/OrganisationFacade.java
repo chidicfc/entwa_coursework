@@ -42,6 +42,11 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
         organisation.setCreatedBy("Chidi Uba"); // change this
         edit(organisation);
     }
+    
+    public void archiveOrganisation(Organisation organisation) {
+        organisation.setStatus(Organisation.OrganisationState.ARCHIVED);
+        edit(organisation);
+    }
 
     public List<Organisation> searchAllActiveOrganisationsByName(String name) {
         TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE UPPER(o.name) LIKE :name AND o.status = :status ORDER BY o.name", Organisation.class);
