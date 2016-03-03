@@ -6,7 +6,6 @@
 package chidi.entwa.ctrl;
 
 import chidi.entwa.bus.OrganisationService;
-import chidi.entwa.ent.ContactPerson;
 import chidi.entwa.ent.Organisation;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -31,15 +30,6 @@ public class OrganisationBean {
     @EJB
     private OrganisationService organisationService;
     private Organisation organisation = new Organisation();
-    private ContactPerson contactPerson = new ContactPerson();
-
-    public ContactPerson getContactPerson() {
-        return contactPerson;
-    }
-
-    public void setContactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
-    }
 
     public Organisation getOrganisation() {
         return organisation;
@@ -50,7 +40,7 @@ public class OrganisationBean {
     }
 
     public String doCreateOrganisation() {
-        organisationService.addNewOrganisation(organisation, contactPerson);
+        organisationService.addNewOrganisation(organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation created",
                         "The organisation" + organisation.getName() + " has been created"));

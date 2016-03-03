@@ -53,9 +53,11 @@ public class Organisation implements Serializable {
     @NotNull
     private String outline;
     
-    @Column(nullable = false)
-    @Embedded
-    private ContactPerson contactPerson;
+    private String contactName;
+    
+    private String emailAddress;
+    
+    private String telephoneNumber;
     
     @OneToMany(mappedBy = "organisation")
     private Set<ProjectIdea> projectIdeas = new HashSet<>();
@@ -112,13 +114,31 @@ public class Organisation implements Serializable {
         this.outline = outline;
     }
 
-    public ContactPerson getContactPerson() {
-        return contactPerson;
+    public String getContactName() {
+        return contactName;
     }
 
-    public void setContactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
+
+    
     
     public Set<ProjectIdea> getProjectIdeas() {
         return projectIdeas;
