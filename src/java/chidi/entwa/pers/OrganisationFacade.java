@@ -34,13 +34,13 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         organisation.setCreatedBy("Chidi Uba"); // change this
-        em.persist(organisation);
+        create(organisation);
     }
 
     public void editOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         organisation.setCreatedBy("Chidi Uba"); // change this
-        em.merge(organisation);
+        edit(organisation);
     }
 
     public List<Organisation> searchAllActiveOrganisationsByName(String name) {
