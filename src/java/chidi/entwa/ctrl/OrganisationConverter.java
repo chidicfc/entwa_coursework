@@ -20,7 +20,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author chidi
  */
-@FacesConverter("organisationConverter")
+@FacesConverter(forClass = Organisation.class)
 public class OrganisationConverter implements Converter {
 
     @Override
