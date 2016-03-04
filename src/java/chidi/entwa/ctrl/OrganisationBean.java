@@ -32,14 +32,14 @@ public class OrganisationBean {
 
     @EJB
     private OrganisationService organisationService;
-    
+
     @EJB
     private OrganisationFacade organisationFacade;
-    
+
     private Organisation organisation = new Organisation();
-    
+
     private List<Organisation> organisations;
-    
+
     public Organisation getOrganisation() {
         return organisation;
     }
@@ -49,9 +49,9 @@ public class OrganisationBean {
     }
 
     public List<Organisation> getOrganisations() {
-         if (organisations == null){
+        if (organisations == null) {
             organisations = getAllOrganisations();
-         }
+        }
         return organisations;
     }
 
@@ -59,8 +59,6 @@ public class OrganisationBean {
         //organisations = getAllOrganisations(); // is this needed?
         this.organisations = organisations;
     }
-    
-    
 
     public String doCreateOrganisation() {
         organisationService.addNewOrganisation(organisation);
@@ -70,28 +68,28 @@ public class OrganisationBean {
 
         return "submitAProjectIdea.xhtml";
     }
-    
+
     public List<Organisation> getAllOrganisations() {
         return organisationService.findAllOrganisations();
     }
-    
+
     public OrganisationFacade getFacade() {
         return organisationFacade;
     }
-    
+
     public String doGetOrganisation() {
         return "submitAProjectIdea.xhtml";
     }
-    
+
     public String doEditOrganisation() {
         organisationService.editOrganisation(organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
                         "The organisation" + organisation.getName() + " has been edited"));
-        
+
         return "submitAProjectIdea.xhtml";
     }
-    
+
     public String doArchiveOrganisation() {
         organisationService.archiveOrganisation(organisation);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -100,5 +98,13 @@ public class OrganisationBean {
         setOrganisations(getAllOrganisations());
         return "submitAProjectIdea.xhtml";
     }
-    
+
+    public String doGetSelectedOrganisation() {
+        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
+        organisation.setCreatedBy("Chidi Uba"); // change this
+        setOrganisation(organisation);
+        
+        return "submitAProjectIdea.xhtml";
+    }
+
 }

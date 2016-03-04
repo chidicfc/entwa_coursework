@@ -5,10 +5,9 @@
  */
 package chidi.entwa.ctrl;
 
-import chidi.entwa.bus.OrganisationService;
+import chidi.entwa.bus.ProjectIdeaService;
 import chidi.entwa.ent.Organisation;
-import chidi.entwa.pers.OrganisationFacade;
-import java.util.List;
+import chidi.entwa.ent.ProjectIdea;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -20,27 +19,43 @@ import javax.faces.context.FacesContext;
  *
  * @author chidi
  */
-@Named(value = "organisationBean")
+@Named(value = "projectIdeaBean")
 @RequestScoped
-public class OrganisationBean {
+public class ProjectIdeaBean {
 
     /**
      * Creates a new instance of OrganisationBean
      */
-    public OrganisationBean() {
+    public ProjectIdeaBean() {
     }
 
     @EJB
-    private OrganisationService organisationService;
+    private ProjectIdeaService projectIdeaService;
     
-    @EJB
-    private OrganisationFacade organisationFacade;
-    
+    private OrganisationBean organisationBean;
+
+    private ProjectIdea projectIdea = new ProjectIdea();
+
     private Organisation organisation = new Organisation();
+
+    public OrganisationBean getOrganisationBean() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
+                getValue(facesContext.getELContext(), null, "organisationBean");
+        organisationBean = orgBean;
+        return organisationBean;
+    }
+
+    public void setOrganisationBean(OrganisationBean organisationBean) {
+        this.organisationBean = organisationBean;
+    }
     
-    private List<Organisation> organisations;
     
+
     public Organisation getOrganisation() {
+        if (organisation == null){
+            organisation = organisationBean.getOrganisation();
+        }
         return organisation;
     }
 
@@ -48,57 +63,21 @@ public class OrganisationBean {
         this.organisation = organisation;
     }
 
-    public List<Organisation> getOrganisations() {
-         if (organisations == null){
-            organisations = getAllOrganisations();
-         }
-        return organisations;
+    public ProjectIdea getProjectIdea() {
+        return projectIdea;
     }
 
-    public void setOrganisations(List<Organisation> organisations) {
-        //organisations = getAllOrganisations(); // is this needed?
-        this.organisations = organisations;
+    public void setProjectIdea(ProjectIdea projectIdea) {
+        this.projectIdea = projectIdea;
     }
-    
-    
 
-    public String doCreateOrganisation() {
-        organisationService.addNewOrganisation(organisation);
+    public String doCreateProjectIdea() {
+        projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation created",
-                        "The organisation" + organisation.getName() + " has been created"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",
+                        "The project" + projectIdea.getTitle() + " has been created"));
 
         return "submitAProjectIdea.xhtml";
     }
-    
-    public List<Organisation> getAllOrganisations() {
-        return organisationService.findAllOrganisations();
-    }
-    
-    public OrganisationFacade getFacade() {
-        return organisationFacade;
-    }
-    
-    public String doGetOrganisation() {
-        return "submitAProjectIdea.xhtml";
-    }
-    
-    public String doEditOrganisation() {
-        organisationService.editOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
-                        "The organisation" + organisation.getName() + " has been edited"));
-        
-        return "submitAProjectIdea.xhtml";
-    }
-    
-    public String doArchiveOrganisation() {
-        organisationService.archiveOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
-                        "The organisation" + organisation.getName() + " has been archived"));
-        setOrganisations(getAllOrganisations());
-        return "submitAProjectIdea.xhtml";
-    }
-    
+
 }
