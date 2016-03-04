@@ -21,10 +21,14 @@
                     <h:form id="selectOneOrganisation">
                         <p:outputLabel for="selectOrganisation" value="Select organisation that the new idea is with:" /><br/><br/>
                         <p:selectOneMenu id="selectOrganisation" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
-                                         filter="true" filterMatchMode="contains" converter="organisationConverter">
+                                         filter="true" filterMatchMode="contains">
+                            <f:selectItem itemLabel="Select an organisation" itemValue="" />
                             <f:selectItems value="#{organisationBean.organisations}" /> 
+                           
                         </p:selectOneMenu> <br/>
                         <h:commandButton value="Edit" action="#{organisationBean.doGetOrganisation}"/> <h:commandButton value="Archive" action="#{organisationBean.doArchiveOrganisation}"/>
+                        <h:inputText value="" id="projectIdeaOrganisation"/>
+                            
                     </h:form>
                 </p:column>
                 <p:column colspan="7">  </p:column>
@@ -86,29 +90,31 @@
                 </p:column>
 
                 <p:column colspan="7">
-                    <h:form>
+                    <h:form id="manageProjectIdea">
                         <h:panelGrid columns="2">
 
                             <h:outputLabel value="Project title:" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{projectIdeaBean.projectIdea.title}" />
 
                             <h:outputLabel value="Reference number:" />
-                            <h:outputLabel value="" />
+                            <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
+                            
+                       
 
                             <h:outputLabel value="Aims and objectives:" />
-                            <h:inputTextarea rows="4" cols="25" />
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}"/>
 
                             <h:outputLabel value="Academic question to be answered (blank if unknown):" />
-                            <h:inputTextarea rows="4" cols="25" />
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.academicQuestion}"/>
 
                             <h:outputLabel value="Anticipated deliverables:" />
-                            <h:inputTextarea rows="4" cols="25" />
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}"/>
 
                             <h:outputLabel value="Student for whom project has been devised (blank if unknown):" />
-                            <h:inputText value="" />
+                            <h:inputText value="#{projectIdeaBean.projectIdea.student}" />
 
                             <p:outputLabel for="Status" value="Status:" />
-                            <p:selectOneMenu id="Status" value="Status" style="width:125px">
+                            <p:selectOneMenu id="Status" value="#{projectIdeaBean.projectIdea.status}" style="width:125px">
                                 <f:selectItem itemLabel="Select status" itemValue="Select status" />
                                 <f:selectItem itemLabel="Allocated" itemValue="Allocated" />
                                 <f:selectItem itemLabel="Approved" itemValue="Approved" />
@@ -117,7 +123,7 @@
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Date submitted/Last updated:" />
-                            <h:outputLabel value="Mar 2, 2016 5:44:07 AM GMT" />
+                            <h:outputLabel value="#{projectIdeaBean.projectIdea.dateSubmitted}" />
 
                             <h:panelGroup />
                             <h:panelGroup />
@@ -125,7 +131,7 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Project Idea" />
+                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea}"/>
                             <h:commandButton value="Edit Project Idea" />
                         </h:panelGrid>
                     </h:form>
