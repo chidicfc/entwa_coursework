@@ -66,14 +66,15 @@ public class ProjectIdeaBean {
     }
 
     public List<ProjectIdea> getProjectIdeas() {
+        if (projectIdeas == null) {
+            projectIdeas = getAllProjectIdeas();
+        }
         return projectIdeas;
     }
 
     public void setProjectIdeas(List<ProjectIdea> projectIdeas) {
         this.projectIdeas = projectIdeas;
     }
-    
-    
 
     public void setProjectIdea(ProjectIdea projectIdea) {
         this.projectIdea = projectIdea;

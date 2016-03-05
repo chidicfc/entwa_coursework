@@ -6,53 +6,45 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
-    
+
     <ui:define name="content">
         <h3>All approved or allocated project ideas</h3>
-        <p:panelGrid>
-            <f:facet name="header">
-                <p:row>
-                    <p:column>Idea #</p:column>
-                    <p:column>Project title</p:column>
-                    <p:column>Owner (Organisation)</p:column>
-                    <p:column>Last Updated</p:column>
-                    <p:column>Status</p:column>
-                </p:row>
 
-            </f:facet>
+        <p:dataTable var="project" value="#{projectIdeaBean.projectIdeas}" paginator="true" rows="10">
+            <p:column headerText="Idea #">
+                <h:outputText value="#{project.id}" />
+            </p:column>
 
-            <p:row>
-                <p:column>1000</p:column>
-                <p:column>
-                    <h:form>
-                        <h:commandLink value="Camera Hacking" action="viewProjectIdea.xhtml"/>  
-                    </h:form>
-                    <h:form>
-                        <h:commandButton image="../resources/images/pencil-icon.png"/>
-                        <h:commandButton image="../resources/images/trash.png"/>
-                    </h:form>
-                </p:column>
-                <p:column>
-                    <h:form>
-                        <h:commandLink value="Dr. Jim Briggs (SoC/UoP)" action="viewOrganisation.xhtml"/>  
-                    </h:form>  
-                    <h:form>
-                        <h:commandButton image="../resources/images/pencil-icon.png"/>
-                        <h:commandButton image="../resources/images/archive-icon.png"/>
-                    </h:form>
-                </p:column>
-                <p:column>Feb 9, 2016</p:column>
-                <p:column>S</p:column>
-            </p:row>
-            
-              <p:row>
-                <p:column>1001</p:column>
-                <p:column>Camera Hacking 1</p:column>
-                <p:column>Dr. Jim Briggs (SoC/UoP)</p:column>
-                <p:column>Feb 10, 2016</p:column>
-                <p:column>A</p:column>
-            </p:row>
-        </p:panelGrid>
+            <p:column headerText="Project title">
+                <h:form>
+                    <h:commandLink value="#{project.title}" action="viewProjectIdea.xhtml"/>  
+                </h:form>
+                <h:form>
+                    <h:commandButton image="../resources/images/pencil-icon.png"/>
+                    <h:commandButton image="../resources/images/trash.png"/>
+                </h:form>
+            </p:column>
+
+            <p:column headerText="Owner (Organisation)">
+                <h:form>
+                    <h:commandLink value="#{project.organisation.contactName} (#{project.organisation.name})" action="viewOrganisation.xhtml"/>  
+                </h:form>  
+
+                <h:form>
+                    <h:commandButton image="../resources/images/pencil-icon.png"/>
+                    <h:commandButton image="../resources/images/archive-icon.png"/>
+                </h:form>
+            </p:column>
+
+            <p:column headerText="Last Updated">
+                <h:outputText value="#{project.lastUpdated}" />
+            </p:column>
+
+            <p:column headerText="Status">
+                <h:outputText value="#{project.status}" />
+            </p:column>
+        </p:dataTable>
+
     </ui:define>
 
 </ui:composition>
