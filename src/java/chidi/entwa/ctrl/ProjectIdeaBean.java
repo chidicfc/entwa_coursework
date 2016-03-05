@@ -67,6 +67,10 @@ public class ProjectIdeaBean {
         return projectIdea;
     }
 
+    public void setProjectIdea(ProjectIdea projectIdea) {
+        this.projectIdea = projectIdea;
+    }
+
     public List<ProjectIdea> getApprovedOrAllocatedProjectIdeas() {
         if (approvedOrAllocatedProjectIdeas == null) {
             approvedOrAllocatedProjectIdeas = getAllApprovedOrAllocatedProjectIdeas();
@@ -89,10 +93,6 @@ public class ProjectIdeaBean {
         this.approvedButUnallocatedProjectIdeas = approvedButUnallocatedProjectIdeas;
     }
 
-    public void setProjectIdea(ProjectIdea projectIdea) {
-        this.projectIdea = projectIdea;
-    }
-
     public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         //organisation = organisationBean.getOrganisation();
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
@@ -101,6 +101,11 @@ public class ProjectIdeaBean {
                         "The project" + projectIdea.getTitle() + " has been created"));
 
         return "submitAProjectIdea.xhtml";
+    }
+
+    public String doViewProjectIdea(ProjectIdea projectIdea) {
+        setProjectIdea(projectIdea);
+        return "viewProjectIdea.xhtml";
     }
 
     public List<ProjectIdea> getAllApprovedOrAllocatedProjectIdeas() {

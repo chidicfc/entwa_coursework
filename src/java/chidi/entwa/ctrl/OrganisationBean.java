@@ -119,4 +119,9 @@ public class OrganisationBean {
         return "submitAProjectIdea.xhtml";
     }
 
+    public String doViewOrganisation(Organisation organisation) {
+        setOrganisation(organisation);
+        return "viewOrganisation.xhtml";
+    }
+
 }
