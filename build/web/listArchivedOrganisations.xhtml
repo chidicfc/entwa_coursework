@@ -19,7 +19,7 @@
 
             <p:column headerText="Organisation name">
                 <h:form>
-                    <h:commandLink value="#{organisation.name}" action="viewProjectIdea.xhtml"/>  
+                    <h:commandLink value="#{organisation.name}" action="#{organisationBean.doViewOrganisation(organisation)}"/>  
                 </h:form>
                 <h:form>
                     <h:commandButton image="../resources/images/unarchive.png"/>
