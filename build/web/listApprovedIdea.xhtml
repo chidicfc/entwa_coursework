@@ -10,14 +10,14 @@
     <ui:define name="content">
         <h3>All approved (but unallocated) project ideas</h3>
         
-        <p:dataTable var="project" value="#{projectIdeaBean.approvedButUnallocatedProjectIdeas}" paginator="true" rows="10">
+        <p:dataTable var="projectIdea" value="#{projectIdeaBean.approvedButUnallocatedProjectIdeas}" paginator="true" rows="10">
             <p:column headerText="Idea #">
-                <h:outputText value="#{project.id}" />
+                <h:outputText value="#{projectIdea.id}" />
             </p:column>
 
             <p:column headerText="Project title">
                 <h:form>
-                    <h:commandLink value="#{project.title}" action="viewProjectIdea.xhtml"/>  
+                    <h:commandLink value="#{projectIdea.title}" action="#{projectIdeaBean.doViewProjectIdea(projectIdea)}"/>  
                 </h:form>
                 <h:form>
                     <h:commandButton image="../resources/images/pencil-icon.png"/>
@@ -27,7 +27,7 @@
 
             <p:column headerText="Owner (Organisation)">
                 <h:form>
-                    <h:commandLink value="#{project.organisation.contactName} (#{project.organisation.name})" action="viewOrganisation.xhtml"/>  
+                    <h:commandLink value="#{projectIdea.organisation.contactName} (#{projectIdea.organisation.name})" action="#{organisationBean.doViewOrganisation(projectIdea.organisation)}"/>  
                 </h:form>  
 
                 <h:form>
@@ -37,11 +37,11 @@
             </p:column>
 
             <p:column headerText="Last Updated">
-                <h:outputText value="#{project.lastUpdated}" />
+                <h:outputText value="#{projectIdea.lastUpdated}" />
             </p:column>
 
             <p:column headerText="Status">
-                <h:outputText value="#{project.status}" />
+                <h:outputText value="#{projectIdea.status}" />
             </p:column>
         </p:dataTable>
     </ui:define>
