@@ -12,7 +12,6 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -27,6 +26,7 @@ public class ProjectIdeaBean {
      * Creates a new instance of OrganisationBean
      */
     public ProjectIdeaBean() {
+        this.organisation = new Organisation();
     }
 
     @EJB
@@ -36,13 +36,13 @@ public class ProjectIdeaBean {
 
     private ProjectIdea projectIdea = new ProjectIdea();
 
-    private Organisation organisation = new Organisation();
+    private Organisation organisation;
 
     public OrganisationBean getOrganisationBean() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
-                getValue(facesContext.getELContext(), null, "organisationBean");
-        organisationBean = orgBean;
+        //FacesContext facesContext = FacesContext.getCurrentInstance();
+        //OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
+                //getValue(facesContext.getELContext(), null, "organisationBean");
+        //organisationBean = orgBean;
         return organisationBean;
     }
 
@@ -53,9 +53,6 @@ public class ProjectIdeaBean {
     
 
     public Organisation getOrganisation() {
-        if (organisation == null){
-            organisation = organisationBean.getOrganisation();
-        }
         return organisation;
     }
 
@@ -71,7 +68,8 @@ public class ProjectIdeaBean {
         this.projectIdea = projectIdea;
     }
 
-    public String doCreateProjectIdea() {
+    public String doCreateProjectIdea(OrganisationBean organisationBean) {
+        organisation = organisationBean.getOrganisation();
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",

@@ -24,16 +24,9 @@
                                          filter="true" filterMatchMode="contains">
                             <f:selectItem itemLabel="Select an organisation" itemValue="" />
                             <f:selectItems value="#{organisationBean.organisations}" /> 
-                            <p:ajax update="organisationForProject1 :manageProjectIdea:organisationForProject" process="selectOrganisation" event="change" listener="#{organisationBean.doGetSelectedOrganisation()}"/>
+                            <p:ajax update=":manageProjectIdea:organisationForProject" process="selectOrganisation" event="change" listener="#{organisationBean.doGetSelectedOrganisation()}"/>
                         </p:selectOneMenu> <br/>
                         <h:commandButton value="Edit" action="#{organisationBean.doGetOrganisation}"/> <h:commandButton value="Archive" action="#{organisationBean.doArchiveOrganisation}"/>
-                       
-                        <p:selectOneMenu id="organisationForProject1" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
-                                         filter="true" filterMatchMode="contains">
-                            <f:selectItem itemLabel="Select an organisation" itemValue="" />
-                            <f:selectItems value="#{organisationBean.organisations}" /> 
-
-                        </p:selectOneMenu>
                     </h:form>
                 </p:column>
                 <p:column colspan="7">  </p:column>
@@ -104,10 +97,9 @@
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
 
-                            <p:selectOneMenu id="organisationForProject" value="#{projectIdeaBean.organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
+                            <p:selectOneMenu id="organisationForProject" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
                                              filter="true" filterMatchMode="contains">
-                                <f:selectItem itemLabel="Select an organisation" itemValue="" />
-                                <f:selectItems value="#{projectIdeaBean.organisationBean.organisations}" /> 
+                                <f:selectItems value="#{organisationBean.organisations}" /> 
 
                             </p:selectOneMenu>
                             <h:panelGrid />
@@ -127,10 +119,7 @@
                             <p:outputLabel for="Status" value="Status:" />
                             <p:selectOneMenu id="Status" value="#{projectIdeaBean.projectIdea.status}" style="width:125px">
                                 <f:selectItem itemLabel="Select status" itemValue="Select status" />
-                                <f:selectItem itemLabel="Allocated" itemValue="Allocated" />
-                                <f:selectItem itemLabel="Approved" itemValue="Approved" />
-                                <f:selectItem itemLabel="Provisional" itemValue="Provisional" />
-                                <f:selectItem itemLabel="Withdrawn" itemValue="Withdrawn" />
+                                <f:selectItems value="#{projectIdeaBean.projectIdea.projectIdeaStates}" />
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Date submitted/Last updated:" />
@@ -142,7 +131,7 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea}"/>
+                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea(organisationBean)}"/>
                             <h:commandButton value="Edit Project Idea" />
                         </h:panelGrid>
                     </h:form>

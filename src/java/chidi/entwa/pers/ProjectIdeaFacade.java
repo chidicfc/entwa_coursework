@@ -7,6 +7,7 @@ package chidi.entwa.pers;
 
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,8 +34,10 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     }
 
     public void createProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
-        organisation.setCreatedBy("Chidi Uba"); // change this
+        Date date = new Date();
+        projectIdea.setCreatedBy("Chidi Uba"); // change this
+        projectIdea.setDateSubmitted(date);
+        projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);
         create(projectIdea);
     }

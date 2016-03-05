@@ -13,7 +13,6 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -35,6 +34,7 @@ public class OrganisationBean {
 
     @EJB
     private OrganisationFacade organisationFacade;
+    
 
     private Organisation organisation = new Organisation();
 
@@ -50,13 +50,12 @@ public class OrganisationBean {
 
     public List<Organisation> getOrganisations() {
         if (organisations == null) {
-            organisations = getAllOrganisations();
+            organisations = getAllOrganisations(); // is this needed?
         }
         return organisations;
     }
 
     public void setOrganisations(List<Organisation> organisations) {
-        //organisations = getAllOrganisations(); // is this needed?
         this.organisations = organisations;
     }
 
@@ -100,10 +99,7 @@ public class OrganisationBean {
     }
 
     public String doGetSelectedOrganisation() {
-        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
-        organisation.setCreatedBy("Chidi Uba"); // change this
-        setOrganisation(organisation);
-        
+        setOrganisation(organisation);       
         return "submitAProjectIdea.xhtml";
     }
 

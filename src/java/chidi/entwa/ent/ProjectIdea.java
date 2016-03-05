@@ -30,38 +30,49 @@ public class ProjectIdea implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(nullable = false)
     @NotNull
     private String title;
+
     @Column(nullable = false)
     @NotNull
     private String aimsAndObjectives;
-    @Column(nullable = false)
-    @NotNull
+
     private String academicQuestion;
+
     @Column(name = "deliverables", nullable = false)
     @NotNull
     private String anticipatedDeliverables;
+
     @Column(name = "studentName")
     private String student;
+
     public enum ProjectIdeaState {
         PROVISIONAL, APPROVED, ALLOCATED, WITHDRAWN
     }
+
     @Column(nullable = false)
     @NotNull
     private ProjectIdeaState status;
+
+    @Column(nullable = false)
+    @NotNull
     private String createdBy;
+
     @Column(nullable = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateSubmitted;
+
     @Column(nullable = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
+
     @ManyToOne
     private Organisation organisation;
-    
+
     public Long getId() {
         return id;
     }
@@ -117,7 +128,7 @@ public class ProjectIdea implements Serializable {
     public void setStatus(ProjectIdeaState status) {
         this.status = status;
     }
-    
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -141,7 +152,7 @@ public class ProjectIdea implements Serializable {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-    
+
     public Organisation getOrganisation() {
         return organisation;
     }
@@ -149,7 +160,11 @@ public class ProjectIdea implements Serializable {
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
     }
-       
+
+    public ProjectIdeaState[] getProjectIdeaStates() {
+        return ProjectIdeaState.values();
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -171,5 +186,5 @@ public class ProjectIdea implements Serializable {
     public String toString() {
         return "chidi.entwa.ent.ProjectIdea[ id=" + id + " ]";
     }
-    
+
 }
