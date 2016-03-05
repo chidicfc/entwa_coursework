@@ -28,7 +28,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
     public ProjectIdeaFacade() {
         super(ProjectIdea.class);
     }
@@ -55,7 +55,8 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     }
 
     public List<ProjectIdea> getAllApprovedOrAllocatedIdeas() {
-        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.status = :status1 OR p.status = :status2 ORDER BY p.title", ProjectIdea.class);
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND (p.status = :status1 OR p.status = :status2) ORDER BY p.title", ProjectIdea.class);
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
         query.setParameter("status1", ProjectIdea.ProjectIdeaState.APPROVED);
         query.setParameter("status2", ProjectIdea.ProjectIdeaState.ALLOCATED);
         return query.getResultList();
