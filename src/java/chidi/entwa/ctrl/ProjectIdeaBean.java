@@ -8,6 +8,7 @@ package chidi.entwa.ctrl;
 import chidi.entwa.bus.ProjectIdeaService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -31,17 +32,19 @@ public class ProjectIdeaBean {
 
     @EJB
     private ProjectIdeaService projectIdeaService;
-    
+
     private OrganisationBean organisationBean;
 
     private ProjectIdea projectIdea = new ProjectIdea();
 
-    private Organisation organisation;
+    private Organisation organisation = new Organisation();
+
+    private List<ProjectIdea> projectIdeas;
 
     public OrganisationBean getOrganisationBean() {
         //FacesContext facesContext = FacesContext.getCurrentInstance();
         //OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
-                //getValue(facesContext.getELContext(), null, "organisationBean");
+        //getValue(facesContext.getELContext(), null, "organisationBean");
         //organisationBean = orgBean;
         return organisationBean;
     }
@@ -49,8 +52,6 @@ public class ProjectIdeaBean {
     public void setOrganisationBean(OrganisationBean organisationBean) {
         this.organisationBean = organisationBean;
     }
-    
-    
 
     public Organisation getOrganisation() {
         return organisation;
@@ -64,18 +65,32 @@ public class ProjectIdeaBean {
         return projectIdea;
     }
 
+    public List<ProjectIdea> getProjectIdeas() {
+        return projectIdeas;
+    }
+
+    public void setProjectIdeas(List<ProjectIdea> projectIdeas) {
+        this.projectIdeas = projectIdeas;
+    }
+    
+    
+
     public void setProjectIdea(ProjectIdea projectIdea) {
         this.projectIdea = projectIdea;
     }
 
-    public String doCreateProjectIdea(OrganisationBean organisationBean) {
-        organisation = organisationBean.getOrganisation();
+    public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+        //organisation = organisationBean.getOrganisation();
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",
                         "The project" + projectIdea.getTitle() + " has been created"));
 
         return "submitAProjectIdea.xhtml";
+    }
+
+    public List<ProjectIdea> getAllProjectIdeas() {
+        return projectIdeaService.findAllProjectIdeas();
     }
 
 }

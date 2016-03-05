@@ -131,7 +131,7 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea(organisationBean)}"/>
+                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}"/>
                             <h:commandButton value="Edit Project Idea" />
                         </h:panelGrid>
                     </h:form>

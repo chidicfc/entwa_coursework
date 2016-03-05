@@ -8,6 +8,7 @@ package chidi.entwa.bus;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
 import chidi.entwa.pers.ProjectIdeaFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -25,5 +26,9 @@ public class ProjectIdeaService {
 
     public void addNewProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaFacade.createProjectIdea(projectIdea, organisation);
+    }
+    
+    public List<ProjectIdea> findAllProjectIdeas(){
+        return projectIdeaFacade.getAllApprovedOrAllocatedIdeas();
     }
 }
