@@ -26,7 +26,7 @@
                             <f:selectItems value="#{organisationBean.organisations}" /> 
                             <p:ajax update=":manageProjectIdea:organisationForProject" process="selectOrganisation" event="change" listener="#{organisationBean.doGetSelectedOrganisation()}"/>
                         </p:selectOneMenu> <br/>
-                        <h:commandButton value="Edit" action="#{organisationBean.doGetOrganisation}"/> <h:commandButton value="Archive" action="#{organisationBean.doArchiveOrganisation}"/>
+                        <h:commandButton value="Edit" action="#{organisationBean.doGetOrganisation}"/> <h:commandButton value="Archive" action="#{organisationBean.doArchiveOrganisation(organisationBean.organisation, 'submitAProjectIdea.xhtml')}"/>
                     </h:form>
                 </p:column>
                 <p:column colspan="7">  </p:column>

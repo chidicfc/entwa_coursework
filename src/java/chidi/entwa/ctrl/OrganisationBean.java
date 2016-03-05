@@ -105,13 +105,22 @@ public class OrganisationBean {
         return "submitAProjectIdea.xhtml";
     }
 
-    public String doArchiveOrganisation() {
+    public String doArchiveOrganisation(Organisation organisation, String targetPage) {
         organisationService.archiveOrganisation(organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
                         "The organisation" + organisation.getName() + " has been archived"));
         setOrganisations(getAllActiveOrganisations());
-        return "submitAProjectIdea.xhtml";
+        return targetPage;
+    }
+
+    public String doUnarchiveOrganisation(Organisation organisation, String targetPage) {
+        organisationService.unarchiveOrganisation(organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unarchived",
+                        "The organisation" + organisation.getName() + " has been unarchived"));
+        setArchivedOrganisations(getAllArchivedOrganisations());
+        return targetPage;
     }
 
     public String doGetSelectedOrganisation() {

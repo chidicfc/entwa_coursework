@@ -22,7 +22,7 @@
                     <h:commandLink value="#{organisation.name}" action="#{organisationBean.doViewOrganisation(organisation)}"/>  
                 </h:form>
                 <h:form>
-                    <h:commandButton image="../resources/images/unarchive.png"/>
+                    <h:commandButton image="../resources/images/unarchive.png" action="#{organisationBean.doUnarchiveOrganisation(organisation, 'listArchivedOrganisations.xhtml')}"/>
                 </h:form>
             </p:column>
 

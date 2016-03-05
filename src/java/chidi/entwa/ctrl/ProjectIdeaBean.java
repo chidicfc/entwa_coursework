@@ -5,6 +5,7 @@
  */
 package chidi.entwa.ctrl;
 
+import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.bus.ProjectIdeaService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
@@ -32,6 +33,9 @@ public class ProjectIdeaBean {
 
     @EJB
     private ProjectIdeaService projectIdeaService;
+
+    @EJB
+    private OrganisationService organisationService;
 
     private OrganisationBean organisationBean;
 
@@ -114,6 +118,16 @@ public class ProjectIdeaBean {
 
     public List<ProjectIdea> getAllApprovedButUnallocatedProjectIdeas() {
         return projectIdeaService.findAllApprovedButUnallocatedProjectIdeas();
+    }
+
+    public String doArchiveOrganisation(Organisation organisation, String targetPage) {
+        organisationService.archiveOrganisation(organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
+                        "The organisation" + organisation.getName() + " has been archived"));
+        setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
+        setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
+        return targetPage;
     }
 
 }

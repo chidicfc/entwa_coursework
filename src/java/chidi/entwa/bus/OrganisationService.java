@@ -42,4 +42,8 @@ public class OrganisationService {
     public void archiveOrganisation(Organisation organisation) {
         organisationFacade.archiveOrganisation(organisation);
     }
+
+    public void unarchiveOrganisation(Organisation organisation) {
+        organisationFacade.unarchiveOrganisation(organisation);
+    }
 }
