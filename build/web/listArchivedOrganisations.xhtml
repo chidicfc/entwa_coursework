@@ -9,72 +9,38 @@
     <ui:define name="top">
         <p:inputText placeholder="Search Archive"/>
     </ui:define>
-    
+
     <ui:define name="content">
         <h3>Archived Organisations</h3>
-        <p:panelGrid>
-            <f:facet name="header">
-                <p:row>
-                    <p:column>Reference number</p:column>
-                    <p:column>Organisation name</p:column>
-                    <p:column>Postal address</p:column>
-                    <p:column>Outline of what your organisation does</p:column>
-                    <p:column>Contact name</p:column>
-                    <p:column>Status</p:column>
-                </p:row>
+        <p:dataTable var="organisation" value="#{organisationBean.archivedOrganisations}" paginator="true" rows="10">
+            <p:column headerText="Reference number">
+                <h:outputText value="#{organisation.id}" />
+            </p:column>
 
-            </f:facet>
+            <p:column headerText="Organisation name">
+                <h:form>
+                    <h:commandLink value="#{organisation.name}" action="viewProjectIdea.xhtml"/>  
+                </h:form>
+                <h:form>
+                    <h:commandButton image="../resources/images/pencil-icon.png"/>
+                    <h:commandButton image="../resources/images/unarchive.png"/>
+                </h:form>
+            </p:column>
 
-            <p:row>
-                <p:column>
-                    <p:outputLabel value="1200" />    
-                </p:column>
-                <p:column>
-                    <h:form>
-                        <h:commandLink value="Nestle" action="viewOrganisation.xhtml"/>  
-                    </h:form>
-                    <h:form>
-                        <h:commandButton image="../resources/images/pencil-icon.png"/>
-                        <h:commandButton image="../resources/images/archive-icon.png"/>
-                    </h:form>
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Hong Kong" />    
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Fragrance Seller" /> 
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="John Hopkins" />
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Archived" />
-                </p:column>
-            </p:row>
+            <p:column headerText="Postal address">
+                <h:form>
+                    <h:outputText value="#{organisation.postalAddress}" />  
+                </h:form>  
+            </p:column>
 
-            <p:row>
-                <p:column>
-                    <p:outputLabel value="1300" />
-                </p:column>
-                <p:column>
-                    <h:form>
-                        <h:commandLink value="UoP" action="viewOrganisation.xhtml"/> 
-                    </h:form>
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Hants" />
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="System to manage efficiently ..." />
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Steve Clarke" />
-                </p:column>
-                <p:column>
-                    <p:outputLabel value="Archived" />
-                </p:column>
-            </p:row>
-        </p:panelGrid>
+            <p:column headerText="Outline of what your organisation does">
+                <h:outputText value="#{organisation.outline}" />
+            </p:column>
+
+            <p:column headerText="Contact name">
+                <h:outputText value="#{organisation.contactName}" />
+            </p:column>
+        </p:dataTable>
     </ui:define>
 
 </ui:composition>

@@ -22,20 +22,24 @@ public class OrganisationService {
     // "Insert Code > Add Business Method")
     @EJB
     private OrganisationFacade organisationFacade;
-    
-    public void addNewOrganisation (Organisation organisation){
+
+    public void addNewOrganisation(Organisation organisation) {
         organisationFacade.createOrganisation(organisation);
     }
-    
-    public List<Organisation> findAllOrganisations(){
+
+    public List<Organisation> findAllActiveOrganisations() {
         return organisationFacade.getAllActiveOrganisations();
     }
-    
-    public void editOrganisation (Organisation organisation){
+
+    public List<Organisation> findAllArchivedOrganisations() {
+        return organisationFacade.getAllArchivedOrganisations();
+    }
+
+    public void editOrganisation(Organisation organisation) {
         organisationFacade.editOrganisation(organisation);
     }
-    
-    public void archiveOrganisation (Organisation organisation) {
+
+    public void archiveOrganisation(Organisation organisation) {
         organisationFacade.archiveOrganisation(organisation);
     }
 }

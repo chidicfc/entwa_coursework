@@ -34,11 +34,12 @@ public class OrganisationBean {
 
     @EJB
     private OrganisationFacade organisationFacade;
-    
 
     private Organisation organisation = new Organisation();
 
     private List<Organisation> organisations;
+
+    private List<Organisation> archivedOrganisations;
 
     public Organisation getOrganisation() {
         return organisation;
@@ -50,13 +51,24 @@ public class OrganisationBean {
 
     public List<Organisation> getOrganisations() {
         if (organisations == null) {
-            organisations = getAllOrganisations(); // is this needed?
+            organisations = getAllActiveOrganisations();
         }
         return organisations;
     }
 
     public void setOrganisations(List<Organisation> organisations) {
         this.organisations = organisations;
+    }
+
+    public List<Organisation> getArchivedOrganisations() {
+        if (archivedOrganisations == null) {
+            archivedOrganisations = getAllArchivedOrganisations();
+        }
+        return archivedOrganisations;
+    }
+
+    public void setArchivedOrganisations(List<Organisation> archivedOrganisations) {
+        this.archivedOrganisations = archivedOrganisations;
     }
 
     public String doCreateOrganisation() {
@@ -68,8 +80,12 @@ public class OrganisationBean {
         return "submitAProjectIdea.xhtml";
     }
 
-    public List<Organisation> getAllOrganisations() {
-        return organisationService.findAllOrganisations();
+    public List<Organisation> getAllActiveOrganisations() {
+        return organisationService.findAllActiveOrganisations();
+    }
+
+    public List<Organisation> getAllArchivedOrganisations() {
+        return organisationService.findAllArchivedOrganisations();
     }
 
     public OrganisationFacade getFacade() {
@@ -94,12 +110,12 @@ public class OrganisationBean {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
                         "The organisation" + organisation.getName() + " has been archived"));
-        setOrganisations(getAllOrganisations());
+        setOrganisations(getAllActiveOrganisations());
         return "submitAProjectIdea.xhtml";
     }
 
     public String doGetSelectedOrganisation() {
-        setOrganisation(organisation);       
+        setOrganisation(organisation);
         return "submitAProjectIdea.xhtml";
     }
 
