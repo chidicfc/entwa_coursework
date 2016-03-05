@@ -31,7 +31,7 @@
                 </h:form>  
 
                 <h:form>
-                    <h:commandButton image="../resources/images/pencil-icon.png"/>
+                    <h:commandButton image="../resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(projectIdea.organisation)}"/>
                     <h:commandButton image="../resources/images/archive-icon.png" action="#{projectIdeaBean.doArchiveOrganisation(projectIdea.organisation, 'home.xhtml')}"/>
                 </h:form>
             </p:column>

@@ -123,7 +123,7 @@ public class OrganisationBean {
         return targetPage;
     }
 
-    public String doGetSelectedOrganisation() {
+    public String doGetSelectedOrganisation(Organisation organisation) {
         setOrganisation(organisation);
         return "submitAProjectIdea.xhtml";
     }
