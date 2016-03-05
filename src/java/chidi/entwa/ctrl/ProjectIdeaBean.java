@@ -39,7 +39,9 @@ public class ProjectIdeaBean {
 
     private Organisation organisation = new Organisation();
 
-    private List<ProjectIdea> projectIdeas;
+    private List<ProjectIdea> approvedOrAllocatedProjectIdeas;
+
+    private List<ProjectIdea> approvedButUnallocatedProjectIdeas;
 
     public OrganisationBean getOrganisationBean() {
         //FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -65,15 +67,26 @@ public class ProjectIdeaBean {
         return projectIdea;
     }
 
-    public List<ProjectIdea> getProjectIdeas() {
-        if (projectIdeas == null) {
-            projectIdeas = getAllProjectIdeas();
+    public List<ProjectIdea> getApprovedOrAllocatedProjectIdeas() {
+        if (approvedOrAllocatedProjectIdeas == null) {
+            approvedOrAllocatedProjectIdeas = getAllApprovedOrAllocatedProjectIdeas();
         }
-        return projectIdeas;
+        return approvedOrAllocatedProjectIdeas;
     }
 
-    public void setProjectIdeas(List<ProjectIdea> projectIdeas) {
-        this.projectIdeas = projectIdeas;
+    public void setApprovedOrAllocatedProjectIdeas(List<ProjectIdea> approvedOrAllocatedProjectIdeas) {
+        this.approvedOrAllocatedProjectIdeas = approvedOrAllocatedProjectIdeas;
+    }
+
+    public List<ProjectIdea> getApprovedButUnallocatedProjectIdeas() {
+        if (approvedButUnallocatedProjectIdeas == null) {
+            approvedButUnallocatedProjectIdeas = getAllApprovedButUnallocatedProjectIdeas();
+        }
+        return approvedButUnallocatedProjectIdeas;
+    }
+
+    public void setApprovedButUnallocatedProjectIdeas(List<ProjectIdea> approvedButUnallocatedProjectIdeas) {
+        this.approvedButUnallocatedProjectIdeas = approvedButUnallocatedProjectIdeas;
     }
 
     public void setProjectIdea(ProjectIdea projectIdea) {
@@ -90,8 +103,12 @@ public class ProjectIdeaBean {
         return "submitAProjectIdea.xhtml";
     }
 
-    public List<ProjectIdea> getAllProjectIdeas() {
-        return projectIdeaService.findAllProjectIdeas();
+    public List<ProjectIdea> getAllApprovedOrAllocatedProjectIdeas() {
+        return projectIdeaService.findAllApprovedOrAllocatedProjectIdeas();
+    }
+
+    public List<ProjectIdea> getAllApprovedButUnallocatedProjectIdeas() {
+        return projectIdeaService.findAllApprovedButUnallocatedProjectIdeas();
     }
 
 }

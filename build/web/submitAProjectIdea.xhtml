@@ -99,6 +99,7 @@
 
                             <p:selectOneMenu id="organisationForProject" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
                                              filter="true" filterMatchMode="contains">
+                                <f:selectItem itemLabel="Select an organisation" itemValue="" />
                                 <f:selectItems value="#{organisationBean.organisations}" /> 
 
                             </p:selectOneMenu>

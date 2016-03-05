@@ -27,8 +27,12 @@ public class ProjectIdeaService {
     public void addNewProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaFacade.createProjectIdea(projectIdea, organisation);
     }
-    
-    public List<ProjectIdea> findAllProjectIdeas(){
+
+    public List<ProjectIdea> findAllApprovedOrAllocatedProjectIdeas() {
         return projectIdeaFacade.getAllApprovedOrAllocatedIdeas();
+    }
+
+    public List<ProjectIdea> findAllApprovedButUnallocatedProjectIdeas() {
+        return projectIdeaFacade.getAllApprovedButUnallocatedIdeas();
     }
 }

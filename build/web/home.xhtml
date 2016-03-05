@@ -10,7 +10,7 @@
     <ui:define name="content">
         <h3>All approved or allocated project ideas</h3>
 
-        <p:dataTable var="project" value="#{projectIdeaBean.projectIdeas}" paginator="true" rows="10">
+        <p:dataTable var="project" value="#{projectIdeaBean.approvedOrAllocatedProjectIdeas}" paginator="true" rows="10">
             <p:column headerText="Idea #">
                 <h:outputText value="#{project.id}" />
             </p:column>
