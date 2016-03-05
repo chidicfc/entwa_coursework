@@ -49,7 +49,8 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     }
 
     public List<ProjectIdea> getAllApprovedButUnallocatedIdeas() {
-        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.status = :status ORDER BY p.title", ProjectIdea.class);
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status ORDER BY p.title", ProjectIdea.class);
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
         query.setParameter("status", ProjectIdea.ProjectIdeaState.APPROVED);
         return query.getResultList();
     }
