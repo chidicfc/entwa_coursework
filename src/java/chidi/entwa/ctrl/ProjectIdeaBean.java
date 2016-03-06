@@ -28,7 +28,6 @@ public class ProjectIdeaBean {
      * Creates a new instance of OrganisationBean
      */
     public ProjectIdeaBean() {
-        this.organisation = new Organisation(); // is this needed?
     }
 
     @EJB
