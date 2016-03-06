@@ -46,11 +46,18 @@ public class OrganisationService {
     public void unarchiveOrganisation(Organisation organisation) {
         organisationFacade.unarchiveOrganisation(organisation);
     }
-    
+
     public List<Organisation> searchArchiveByName(String name) {
         if (name == null) {
             return findAllArchivedOrganisations();
         }
         return organisationFacade.searchAllArchivedOrganisationsByName(name);
+    }
+
+    public List<Organisation> searchOrganisationsByName(String name) {
+        if (name == null) {
+            return findAllActiveOrganisations();
+        }
+        return organisationFacade.searchAllActiveOrganisationsByName(name);
     }
 }

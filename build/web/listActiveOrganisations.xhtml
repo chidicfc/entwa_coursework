@@ -7,13 +7,17 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
     <ui:define name="top">
-        <p:inputText placeholder="Search Organisations"/>
+        
+         <p:inputText placeholder="Search Organisations" id="searchString" value="#{organisationBean.organisation.name}">
+             <p:ajax update=":organisations" process="searchString" event="keyup" listener="#{organisationBean.doSearchOrganisationsByName(organisationBean.organisation.name)}"/>
+        </p:inputText>
+        
     </ui:define>
     
     <ui:define name="content">
         <h3>Organisations</h3>
         
-        <p:dataTable var="organisation" value="#{organisationBean.organisations}" paginator="true" rows="10">
+        <p:dataTable var="organisation" value="#{organisationBean.organisations}" paginator="true" rows="10" id="organisations">
             <p:column headerText="Reference number">
                 <h:outputText value="#{organisation.id}" />
             </p:column>

@@ -132,11 +132,17 @@ public class OrganisationBean {
         setOrganisation(organisation);
         return "viewOrganisation.xhtml";
     }
-    
+
     public String doSearchArchiveByName(String name) {
         archivedOrganisations = organisationService.searchArchiveByName(name);
         setArchivedOrganisations(archivedOrganisations);
         return "listArchivedOrganisations.xhtml";
+    }
+
+    public String doSearchOrganisationsByName(String name) {
+        organisations = organisationService.searchOrganisationsByName(name);
+        setOrganisations(organisations);
+        return "listActiveOrganisations.xhtml";
     }
 
 }
