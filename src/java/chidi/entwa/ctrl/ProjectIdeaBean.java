@@ -134,5 +134,14 @@ public class ProjectIdeaBean {
         getOrganisationBean().setOrganisation(organisation);
         return "submitAProjectIdea.xhtml";
     }
+    
+    public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+        projectIdeaService.editProjectIdea(projectIdea, organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",
+                        "The project" + projectIdea.getTitle() + " has been edited"));
+
+        return "submitAProjectIdea.xhtml";
+    }
 
 }

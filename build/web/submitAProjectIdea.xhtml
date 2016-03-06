@@ -96,6 +96,9 @@
 
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
+                            
+                            <h:inputText value="#{projectIdeaBean.projectIdea.id}" />
+                            <h:panelGrid />
 
                             <p:selectOneMenu id="organisationForProject" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
                                              filter="true" filterMatchMode="contains">
@@ -124,8 +127,8 @@
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Date submitted/Last updated:" />
-                            <h:outputLabel value="#{projectIdeaBean.projectIdea.dateSubmitted}" />
-
+                            <h:outputLabel value="#{(projectIdeaBean.projectIdea.dateSubmitted > projectIdeaBean.projectIdea.lastUpdated) ? projectIdeaBean.projectIdea.dateSubmitted : projectIdeaBean.projectIdea.lastUpdated}" />
+                            
                             <h:panelGroup />
                             <h:panelGroup />
 
@@ -133,7 +136,7 @@
                             <h:panelGroup />
 
                             <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}"/>
-                            <h:commandButton value="Edit Project Idea" />
+                            <h:commandButton value="Edit Project Idea" action="#{projectIdeaBean.doEditProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}" />
                         </h:panelGrid>
                     </h:form>
                 </p:column>

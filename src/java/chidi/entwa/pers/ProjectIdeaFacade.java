@@ -41,6 +41,16 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         projectIdea.setOrganisation(organisation);
         create(projectIdea);
     }
+    
+     public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+        ProjectIdea p = find(projectIdea.getId());
+        Date date = new Date();
+        projectIdea.setCreatedBy("Chidi Uba");
+        projectIdea.setDateSubmitted(p.getDateSubmitted());
+        projectIdea.setLastUpdated(date);
+        projectIdea.setOrganisation(organisation);
+        edit(projectIdea);
+    }
 
     public List<ProjectIdea> findByTitle(String title) {
         TypedQuery<ProjectIdea> query = em.createQuery("SELECT p FROM ProjectIdea p WHERE UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);

@@ -28,6 +28,10 @@ public class ProjectIdeaService {
         projectIdeaFacade.createProjectIdea(projectIdea, organisation);
     }
 
+    public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+        projectIdeaFacade.editProjectIdea(projectIdea, organisation);
+    }
+
     public List<ProjectIdea> findAllApprovedOrAllocatedProjectIdeas() {
         return projectIdeaFacade.getAllApprovedOrAllocatedIdeas();
     }
