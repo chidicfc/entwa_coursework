@@ -56,7 +56,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         remove(projectIdea);
     }
 
-    public List<ProjectIdea> findByTitle(String title) {
+    public List<ProjectIdea> searchByTitle(String title) {
         TypedQuery<ProjectIdea> query = em.createQuery("SELECT p FROM ProjectIdea p WHERE UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
         query.setParameter("title", "%" + title.toUpperCase() + "%");
         return query.getResultList();

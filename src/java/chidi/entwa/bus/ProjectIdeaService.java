@@ -39,6 +39,15 @@ public class ProjectIdeaService {
     public List<ProjectIdea> findAllApprovedButUnallocatedProjectIdeas() {
         return projectIdeaFacade.getAllApprovedButUnallocatedIdeas();
     }
+    
+    public List<ProjectIdea> searchProjectIdeasByTitle(String title, String targetPage) {
+        if ((title.equals("")) && (targetPage.equals("home.xhtml"))) {
+            return findAllApprovedOrAllocatedProjectIdeas();
+        } else if ((title.equals("")) && (targetPage.equals("listApprovedIdea.xhtml"))) {
+           return findAllApprovedButUnallocatedProjectIdeas();
+        }
+        return projectIdeaFacade.searchByTitle(title);
+    }
 
     public void deleteProjectIdea(ProjectIdea projectIdea) {
         projectIdeaFacade.deleteProjectIdea(projectIdea);

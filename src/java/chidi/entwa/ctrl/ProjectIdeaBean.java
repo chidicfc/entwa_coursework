@@ -153,4 +153,16 @@ public class ProjectIdeaBean {
         return targetPage;
     }
 
+    public String doSearchProjectIdeasByTitle(String title, String targetPage) {
+        List<ProjectIdea> projectIdeas = projectIdeaService.searchProjectIdeasByTitle(title, targetPage);
+        if (targetPage.equals("home.xhtml")) {
+            approvedOrAllocatedProjectIdeas = projectIdeas;
+            setApprovedOrAllocatedProjectIdeas(approvedOrAllocatedProjectIdeas);
+        } else if (targetPage.equals("listApprovedIdea.xhtml")) {
+            approvedButUnallocatedProjectIdeas = projectIdeas;
+            setApprovedButUnallocatedProjectIdeas(approvedButUnallocatedProjectIdeas);
+        }
+        return targetPage;
+    }
+
 }

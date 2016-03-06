@@ -7,10 +7,18 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
 
+    <ui:define name="top">
+
+        <p:inputText placeholder="Search Projects" id="searchString" value="#{projectIdeaBean.projectIdea.title}">
+            <p:ajax update=":projectIdeas" process="searchString" event="keyup" listener="#{projectIdeaBean.doSearchProjectIdeasByTitle(projectIdeaBean.projectIdea.title, 'listApprovedIdea.xhtml')}"/>
+        </p:inputText>
+
+    </ui:define>
+
     <ui:define name="content">
         <h3>All approved (but unallocated) project ideas</h3>
-        
-        <p:dataTable var="projectIdea" value="#{projectIdeaBean.approvedButUnallocatedProjectIdeas}" paginator="true" rows="10">
+
+        <p:dataTable var="projectIdea" value="#{projectIdeaBean.approvedButUnallocatedProjectIdeas}" paginator="true" rows="10" id="projectIdeas">
             <p:column headerText="Idea #">
                 <h:outputText value="#{projectIdea.id}" />
             </p:column>
