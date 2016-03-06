@@ -28,7 +28,7 @@ public class ProjectIdeaBean {
      * Creates a new instance of OrganisationBean
      */
     public ProjectIdeaBean() {
-        this.organisation = new Organisation();
+        this.organisation = new Organisation(); // is this needed?
     }
 
     @EJB
@@ -48,10 +48,10 @@ public class ProjectIdeaBean {
     private List<ProjectIdea> approvedButUnallocatedProjectIdeas;
 
     public OrganisationBean getOrganisationBean() {
-        //FacesContext facesContext = FacesContext.getCurrentInstance();
-        //OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
-        //getValue(facesContext.getELContext(), null, "organisationBean");
-        //organisationBean = orgBean;
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
+        getValue(facesContext.getELContext(), null, "organisationBean");
+        organisationBean = orgBean;
         return organisationBean;
     }
 
@@ -98,7 +98,6 @@ public class ProjectIdeaBean {
     }
 
     public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        //organisation = organisationBean.getOrganisation();
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",
@@ -128,6 +127,12 @@ public class ProjectIdeaBean {
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         return targetPage;
+    }
+   
+    public String doGetSelectedProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+        setProjectIdea(projectIdea);
+        getOrganisationBean().setOrganisation(organisation);
+        return "submitAProjectIdea.xhtml";
     }
 
 }
