@@ -28,7 +28,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     public ProjectIdeaFacade() {
         super(ProjectIdea.class);
     }
@@ -41,8 +41,8 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         projectIdea.setOrganisation(organisation);
         create(projectIdea);
     }
-    
-     public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
+
+    public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         ProjectIdea p = find(projectIdea.getId());
         Date date = new Date();
         projectIdea.setCreatedBy("Chidi Uba");
@@ -50,6 +50,10 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);
         edit(projectIdea);
+    }
+
+    public void deleteProjectIdea(ProjectIdea projectIdea) {
+        remove(projectIdea);
     }
 
     public List<ProjectIdea> findByTitle(String title) {

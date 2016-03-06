@@ -50,7 +50,7 @@ public class ProjectIdeaBean {
     public OrganisationBean getOrganisationBean() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
-        getValue(facesContext.getELContext(), null, "organisationBean");
+                getValue(facesContext.getELContext(), null, "organisationBean");
         organisationBean = orgBean;
         return organisationBean;
     }
@@ -128,13 +128,13 @@ public class ProjectIdeaBean {
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         return targetPage;
     }
-   
+
     public String doGetSelectedProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         setProjectIdea(projectIdea);
         getOrganisationBean().setOrganisation(organisation);
         return "submitAProjectIdea.xhtml";
     }
-    
+
     public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaService.editProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -142,6 +142,16 @@ public class ProjectIdeaBean {
                         "The project" + projectIdea.getTitle() + " has been edited"));
 
         return "submitAProjectIdea.xhtml";
+    }
+
+    public String doDeleteProjectIdea(ProjectIdea projectIdea, String targetPage) {
+        projectIdeaService.deleteProjectIdea(projectIdea);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea deleted",
+                        "The project has been edited"));
+        setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
+        setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
+        return targetPage;
     }
 
 }

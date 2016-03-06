@@ -39,4 +39,8 @@ public class ProjectIdeaService {
     public List<ProjectIdea> findAllApprovedButUnallocatedProjectIdeas() {
         return projectIdeaFacade.getAllApprovedButUnallocatedIdeas();
     }
+
+    public void deleteProjectIdea(ProjectIdea projectIdea) {
+        projectIdeaFacade.deleteProjectIdea(projectIdea);
+    }
 }

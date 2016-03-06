@@ -20,7 +20,7 @@
                     <h:commandLink value="#{projectIdea.title}" action="#{projectIdeaBean.doViewProjectIdea(projectIdea)}"/>  
                 </h:form>
                 <h:form>
-                    <h:commandButton image="../resources/images/pencil-icon.png"/>
+                    <h:commandButton image="../resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
                     <h:commandButton image="../resources/images/trash.png"/>
                 </h:form>
             </p:column>
