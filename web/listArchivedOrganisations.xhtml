@@ -7,12 +7,14 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
     <ui:define name="top">
-        <p:inputText placeholder="Search Archive"/>
+        <p:inputText placeholder="Search Archive" id="searchString" value="#{organisationBean.organisation.name}">
+            <p:ajax update=":archivedOrganisations" process="searchString" event="keyup" listener="#{organisationBean.doSearchArchiveByName(organisationBean.organisation.name)}"/>
+        </p:inputText>
     </ui:define>
 
     <ui:define name="content">
         <h3>Archived Organisations</h3>
-        <p:dataTable var="organisation" value="#{organisationBean.archivedOrganisations}" paginator="true" rows="10">
+        <p:dataTable var="organisation" value="#{organisationBean.archivedOrganisations}" paginator="true" rows="10" id="archivedOrganisations">
             <p:column headerText="Reference number">
                 <h:outputText value="#{organisation.id}" />
             </p:column>
