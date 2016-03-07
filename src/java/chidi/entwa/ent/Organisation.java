@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -64,7 +65,7 @@ public class Organisation implements Serializable {
     @Column(nullable = false)
     @NotNull
     private String createdBy;
-
+    
     public Long getId() {
         return id;
     }
@@ -129,8 +130,6 @@ public class Organisation implements Serializable {
         this.telephoneNumber = telephoneNumber;
     }
 
-    
-    
     public Set<ProjectIdea> getProjectIdeas() {
         return projectIdeas;
     }
@@ -155,7 +154,7 @@ public class Organisation implements Serializable {
         this.createdBy = createdBy;
     }
     
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -9,8 +9,8 @@
 
     <ui:define name="top">
 
-        <p:inputText placeholder="Search Projects" id="searchString" value="#{projectIdeaBean.projectIdea.title}">
-            <p:ajax update=":projectIdeas" process="searchString" event="keyup" listener="#{projectIdeaBean.doSearchProjectIdeasByTitle(projectIdeaBean.projectIdea.title, 'home.xhtml')}"/>
+        <p:inputText placeholder="Search ..." id="searchString" value="#{projectIdeaBean.projectIdea.title}">
+            <p:ajax update=":projectIdeas" process="searchString" event="keyup" listener="#{projectIdeaBean.doSearchApprovedOrAllocatedProjectIdeasByTitle(projectIdeaBean.projectIdea.title)}"/>
         </p:inputText>
 
     </ui:define>

@@ -61,7 +61,16 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         query.setParameter("title", "%" + title.toUpperCase() + "%");
         return query.getResultList();
     }
-
+    
+      public List<ProjectIdea> searchApprovedOrAllocatedIdeasByTitle(String title) {
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND (p.status = :status1 OR p.status = :status2) AND UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
+        query.setParameter("title", "%" + title.toUpperCase() + "%");
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
+        query.setParameter("status1", ProjectIdea.ProjectIdeaState.APPROVED);
+        query.setParameter("status2", ProjectIdea.ProjectIdeaState.ALLOCATED);
+        return query.getResultList();
+    }
+    
     public List<ProjectIdea> getAllApprovedButUnallocatedIdeas() {
         TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status ORDER BY UPPER(p.title)", ProjectIdea.class);
         query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);

@@ -39,14 +39,12 @@ public class ProjectIdeaService {
     public List<ProjectIdea> findAllApprovedButUnallocatedProjectIdeas() {
         return projectIdeaFacade.getAllApprovedButUnallocatedIdeas();
     }
-    
-    public List<ProjectIdea> searchProjectIdeasByTitle(String title, String targetPage) {
-        if ((title.equals("")) && (targetPage.equals("home.xhtml"))) {
+
+    public List<ProjectIdea> searchApprovedOrAllocatedProjectIdeasByTitle(String title) {
+        if (title == null || title.equals("")) {
             return findAllApprovedOrAllocatedProjectIdeas();
-        } else if ((title.equals("")) && (targetPage.equals("listApprovedIdea.xhtml"))) {
-           return findAllApprovedButUnallocatedProjectIdeas();
         }
-        return projectIdeaFacade.searchByTitle(title);
+        return projectIdeaFacade.searchApprovedOrAllocatedIdeasByTitle(title);
     }
 
     public void deleteProjectIdea(ProjectIdea projectIdea) {

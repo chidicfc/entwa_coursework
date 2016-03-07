@@ -128,6 +128,16 @@ public class ProjectIdeaBean {
         return targetPage;
     }
 
+    public String doUnarchiveOrganisation(Organisation organisation, String targetPage) {
+        organisationService.unarchiveOrganisation(organisation);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unrchived",
+                        "The organisation" + organisation.getName() + " has been unarchived"));
+        setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
+        setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
+        return targetPage;
+    }
+
     public String doGetSelectedProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         setProjectIdea(projectIdea);
         getOrganisationBean().setOrganisation(organisation);
@@ -153,16 +163,10 @@ public class ProjectIdeaBean {
         return targetPage;
     }
 
-    public String doSearchProjectIdeasByTitle(String title, String targetPage) {
-        List<ProjectIdea> projectIdeas = projectIdeaService.searchProjectIdeasByTitle(title, targetPage);
-        if (targetPage.equals("home.xhtml")) {
-            approvedOrAllocatedProjectIdeas = projectIdeas;
-            setApprovedOrAllocatedProjectIdeas(approvedOrAllocatedProjectIdeas);
-        } else if (targetPage.equals("listApprovedIdea.xhtml")) {
-            approvedButUnallocatedProjectIdeas = projectIdeas;
-            setApprovedButUnallocatedProjectIdeas(approvedButUnallocatedProjectIdeas);
-        }
-        return targetPage;
+    public String doSearchApprovedOrAllocatedProjectIdeasByTitle(String title) {
+        List<ProjectIdea> projectIdeas = projectIdeaService.searchApprovedOrAllocatedProjectIdeasByTitle(title);
+        setApprovedOrAllocatedProjectIdeas(projectIdeas);
+        return "home.xhtml";
     }
 
 }
