@@ -7,72 +7,76 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
 
+    <ui:define name="title">
+        Project Idea Details
+    </ui:define>
+
     <ui:define name="top">
- 
+
     </ui:define>
 
     <ui:define name="content">
         <h3>Project Idea Details </h3>
-        
+
         <h:form>
             <p:panel id="organisation" header="Organisation">
                 <h:panelGrid columns="2" border="1" cellpadding="5">
                     <p:outputLabel value="Organisation name:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.name}" />
-                    
+
                     <p:outputLabel value="Reference number:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.id}" />
-                
+
                     <p:outputLabel value="Postal address:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.postalAddress}" />
-                    
+
                     <p:outputLabel value="Post code:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.postCode}" />
-                    
+
                     <p:outputLabel value="Outline of what your organisation does:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.outline}" />
-                    
+
                     <p:outputLabel value="Contact name:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.contactName}" />
-                
+
                     <p:outputLabel value="Telephone number:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.telephoneNumber}" />
-                    
+
                     <p:outputLabel value="Email address:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.organisation.emailAddress}" />
                 </h:panelGrid>
             </p:panel>
-        
-        
+
+
             <p:panel id="idea" header="Idea">
                 <h:panelGrid columns="2" border="1" cellpadding="5">
                     <p:outputLabel value="Project title:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.title}" />
-                    
+
                     <p:outputLabel value="Reference number:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
-                
+
                     <p:outputLabel value="Aims and objectives:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.aimsAndObjectives}" />
-                    
+
                     <p:outputLabel value="Academic question to be answered (blank if unknown):" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.academicQuestion}" />
-                    
+
                     <p:outputLabel value="Anticipated deliverables:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}" />
-                    
+
                     <p:outputLabel value="Student for whom project has been devised (blank if unknown):" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.student}" />
-                
+
                     <p:outputLabel value="Status:" />
                     <p:outputLabel value="#{projectIdeaBean.projectIdea.status}" />
-                    
+
                     <p:outputLabel value="Date submitted/last updated:" />
                     <p:outputLabel value="#{(projectIdeaBean.projectIdea.dateSubmitted > projectIdeaBean.projectIdea.lastUpdated) ? projectIdeaBean.projectIdea.dateSubmitted : projectIdeaBean.projectIdea.lastUpdated}" />
                 </h:panelGrid>
             </p:panel>
         </h:form>
-            
+
     </ui:define>
 
 </ui:composition>

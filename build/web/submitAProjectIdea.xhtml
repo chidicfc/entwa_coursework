@@ -7,6 +7,10 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
 
+    <ui:define name="title">
+        Submit a project idea
+    </ui:define>
+
     <ui:define name="top">
 
     </ui:define>
@@ -94,7 +98,7 @@
 
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
-                            
+
                             <h:inputText value="#{projectIdeaBean.projectIdea.id}" />
                             <h:panelGrid />
 
@@ -126,7 +130,7 @@
 
                             <h:outputLabel value="Date submitted/Last updated:" />
                             <h:outputLabel value="#{(projectIdeaBean.projectIdea.dateSubmitted > projectIdeaBean.projectIdea.lastUpdated) ? projectIdeaBean.projectIdea.dateSubmitted : projectIdeaBean.projectIdea.lastUpdated}" />
-                            
+
                             <h:panelGroup />
                             <h:panelGroup />
 

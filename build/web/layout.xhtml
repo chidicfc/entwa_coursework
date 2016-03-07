@@ -13,7 +13,11 @@
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <h:outputStylesheet library="css" name="layout.css"/>
                 <h:outputStylesheet library="css" name="style.css"/>
-                <title>MSc Project Ideas Database</title>
+                <title>
+                    <ui:insert name="title">
+                        MSc Project Ideas Database
+                    </ui:insert>
+                </title>
             </f:facet>
         </h:head>
 
@@ -39,9 +43,7 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="50" closable="false" collapsible="false">
-
                     <p:outputLabel value="MSc Project Ideas Database" class="footer" />
-
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="200" header="" collapsible="false">

@@ -7,9 +7,12 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
 
-    <ui:define name="top">
+    <ui:define name="title">
+        All approved (but unallocated) project ideas
+    </ui:define>
 
-         <p:inputText placeholder="Search ..." id="searchString" value="#{projectIdeaBean.projectIdea.title}">
+    <ui:define name="top">
+        <p:inputText placeholder="Search ..." id="searchString" value="#{projectIdeaBean.projectIdea.title}">
             <p:ajax update=":projectIdeas" process="searchString" event="keyup" listener="#{projectIdeaBean.doSearchApprovedButUnallocatedProjectIdeasByTitle(projectIdeaBean.projectIdea.title)}"/>
         </p:inputText>
 

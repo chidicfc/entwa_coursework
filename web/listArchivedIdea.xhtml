@@ -7,6 +7,10 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./layout.xhtml">
 
+    <ui:define name="title">
+        All archived project ideas
+    </ui:define>
+
     <ui:define name="top">
 
         <p:inputText placeholder="Search ..." id="searchString" value="#{projectIdeaBean.projectIdea.title}">
