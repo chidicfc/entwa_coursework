@@ -56,7 +56,7 @@
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{organisationBean.organisation.id}" />
 
-                            <h:inputHidden value="#{organisationBean.organisation.id}" />
+                            <h:inputHidden value="#{organisationBean.organisation.id}"/>
                             <h:panelGroup />
 
                             <h:outputLabel value="Postal address:" />
@@ -99,16 +99,18 @@
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
 
-                            <h:inputText value="#{projectIdeaBean.projectIdea.id}" />
-                            <h:panelGrid />
+                            <h:inputText value="#{projectIdeaBean.projectIdea.id}" styleClass="hidden"/>
+                            <h:panelGrid styleClass="hidden"/>
 
-                            <p:selectOneMenu id="organisationForProject" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
-                                             filter="true" filterMatchMode="contains">
-                                <f:selectItem itemLabel="Select an organisation" itemValue="" />
-                                <f:selectItems value="#{organisationBean.organisations}" /> 
+                            <p:panel styleClass="hidden">
+                                <p:selectOneMenu id="organisationForProject" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
+                                                 filter="true" filterMatchMode="contains">
+                                    <f:selectItem itemLabel="Select an organisation" itemValue=""/>
+                                    <f:selectItems value="#{organisationBean.organisations}"/> 
 
-                            </p:selectOneMenu>
-                            <h:panelGrid />
+                                </p:selectOneMenu>
+                            </p:panel>
+                            <h:panelGrid  styleClass="hidden"/>
 
                             <h:outputLabel value="Aims and objectives:" />
                             <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}"/>
