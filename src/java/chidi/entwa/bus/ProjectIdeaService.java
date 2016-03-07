@@ -40,6 +40,10 @@ public class ProjectIdeaService {
         return projectIdeaFacade.getAllApprovedButUnallocatedIdeas();
     }
 
+    public List<ProjectIdea> findAllProvisionalProjectIdeas() {
+        return projectIdeaFacade.getAllProvisionalIdeas();
+    }
+
     public List<ProjectIdea> searchApprovedOrAllocatedProjectIdeasByTitle(String title) {
         if (title == null || title.equals("")) {
             return findAllApprovedOrAllocatedProjectIdeas();
@@ -52,6 +56,13 @@ public class ProjectIdeaService {
             return findAllApprovedButUnallocatedProjectIdeas();
         }
         return projectIdeaFacade.searchApprovedButUnallocatedIdeasByTitle(title);
+    }
+
+    public List<ProjectIdea> searchProvisionalProjectIdeasByTitle(String title) {
+        if (title == null || title.equals("")) {
+            return findAllProvisionalProjectIdeas();
+        }
+        return projectIdeaFacade.searchProvisionalIdeasByTitle(title);
     }
 
     public void deleteProjectIdea(ProjectIdea projectIdea) {

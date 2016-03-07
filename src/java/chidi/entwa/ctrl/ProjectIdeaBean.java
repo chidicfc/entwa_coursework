@@ -46,6 +46,8 @@ public class ProjectIdeaBean {
 
     private List<ProjectIdea> approvedButUnallocatedProjectIdeas;
 
+    private List<ProjectIdea> provisionalProjectIdeas;
+
     public OrganisationBean getOrganisationBean() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
@@ -96,6 +98,17 @@ public class ProjectIdeaBean {
         this.approvedButUnallocatedProjectIdeas = approvedButUnallocatedProjectIdeas;
     }
 
+    public List<ProjectIdea> getProvisionalProjectIdeas() {
+        if (provisionalProjectIdeas == null) {
+            provisionalProjectIdeas = getAllProvisionalProjectIdeas();
+        }
+        return provisionalProjectIdeas;
+    }
+
+    public void setProvisionalProjectIdeas(List<ProjectIdea> provisionalProjectIdeas) {
+        this.provisionalProjectIdeas = provisionalProjectIdeas;
+    }
+
     public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -116,6 +129,10 @@ public class ProjectIdeaBean {
 
     public List<ProjectIdea> getAllApprovedButUnallocatedProjectIdeas() {
         return projectIdeaService.findAllApprovedButUnallocatedProjectIdeas();
+    }
+
+    public List<ProjectIdea> getAllProvisionalProjectIdeas() {
+        return projectIdeaService.findAllProvisionalProjectIdeas();
     }
 
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
@@ -168,11 +185,17 @@ public class ProjectIdeaBean {
         setApprovedOrAllocatedProjectIdeas(projectIdeas);
         return "home.xhtml";
     }
-    
-      public String doSearchApprovedButUnallocatedProjectIdeasByTitle(String title) {
+
+    public String doSearchApprovedButUnallocatedProjectIdeasByTitle(String title) {
         List<ProjectIdea> projectIdeas = projectIdeaService.searchApprovedButUnallocatedProjectIdeasByTitle(title);
         setApprovedButUnallocatedProjectIdeas(projectIdeas);
         return "listApprovedIdea.xhtml";
+    }
+    
+        public String doSearchProvisionalProjectIdeasByTitle(String title) {
+        List<ProjectIdea> projectIdeas = projectIdeaService.searchProvisionalProjectIdeasByTitle(title);
+        setProvisionalProjectIdeas(projectIdeas);
+        return "listProvisionalIdea.xhtml";
     }
 
 }

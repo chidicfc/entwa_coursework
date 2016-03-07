@@ -70,8 +70,8 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         query.setParameter("status2", ProjectIdea.ProjectIdeaState.ALLOCATED);
         return query.getResultList();
     }
-    
-      public List<ProjectIdea> searchApprovedButUnallocatedIdeasByTitle(String title) {
+
+    public List<ProjectIdea> searchApprovedButUnallocatedIdeasByTitle(String title) {
         TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status AND UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
         query.setParameter("title", "%" + title.toUpperCase() + "%");
         query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
@@ -91,6 +91,21 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
         query.setParameter("status1", ProjectIdea.ProjectIdeaState.APPROVED);
         query.setParameter("status2", ProjectIdea.ProjectIdeaState.ALLOCATED);
+        return query.getResultList();
+    }
+
+    public List<ProjectIdea> getAllProvisionalIdeas() {
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status ORDER BY UPPER(p.title)", ProjectIdea.class);
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
+        query.setParameter("status", ProjectIdea.ProjectIdeaState.PROVISIONAL);
+        return query.getResultList();
+    }
+
+    public List<ProjectIdea> searchProvisionalIdeasByTitle(String title) {
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status AND UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
+        query.setParameter("title", "%" + title.toUpperCase() + "%");
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ACTIVE);
+        query.setParameter("status", ProjectIdea.ProjectIdeaState.PROVISIONAL);
         return query.getResultList();
     }
 }
