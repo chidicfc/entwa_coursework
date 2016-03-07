@@ -51,7 +51,7 @@
                         <h:panelGrid columns="2">
 
                             <h:outputLabel value="Organisation name:" />
-                            <h:inputText value="#{organisationBean.organisation.name}" />
+                            <h:inputText value="#{organisationBean.organisation.name}" required="true" requiredMessage="name is required"/>
 
                             <h:outputLabel value="Reference number:" />
                             <h:outputLabel value="#{organisationBean.organisation.id}" />
@@ -60,22 +60,22 @@
                             <h:panelGroup />
 
                             <h:outputLabel value="Postal address:" />
-                            <h:inputTextarea rows="4" cols="25" value="#{organisationBean.organisation.postalAddress}"/>
+                            <h:inputTextarea rows="4" cols="25" value="#{organisationBean.organisation.postalAddress}" required="true" requiredMessage="postal address is required"/>
 
                             <h:outputLabel value="Post code:" />
-                            <h:inputText value="#{organisationBean.organisation.postCode}" />
+                            <h:inputText value="#{organisationBean.organisation.postCode}" required="true" requiredMessage="post code is required"/>
 
                             <h:outputLabel value="Outline of what your organisation does:" />
-                            <h:inputText value="#{organisationBean.organisation.outline}" />
+                            <h:inputText value="#{organisationBean.organisation.outline}" required="true" requiredMessage="outline is required"/>
 
                             <h:outputLabel value="Contact name:" />
-                            <h:inputText value="#{organisationBean.organisation.contactName}" />
+                            <h:inputText value="#{organisationBean.organisation.contactName}" required="true" requiredMessage="contact name is required"/>
 
                             <h:outputLabel value="Telephone number:" />
-                            <h:inputText value="#{organisationBean.organisation.telephoneNumber}" />
+                            <h:inputText value="#{organisationBean.organisation.telephoneNumber}" required="true" requiredMessage="telephone number is required"/>
 
                             <h:outputLabel value="Email address:" />
-                            <h:inputText value="#{organisationBean.organisation.emailAddress}" />
+                            <h:inputText value="#{organisationBean.organisation.emailAddress}" required="true" requiredMessage="email address is required"/>
 
                             <h:panelGroup />
                             <h:panelGroup />
@@ -94,10 +94,10 @@
                         <h:panelGrid columns="2">
 
                             <h:outputLabel value="Project title:" />
-                            <h:inputText value="#{projectIdeaBean.projectIdea.title}" />
+                            <h:inputText value="#{projectIdeaBean.projectIdea.title}" required="true" requiredMessage="Title is required"/>
 
                             <h:outputLabel value="Reference number:" />
-                            <h:outputLabel value="#{projectIdeaBean.projectIdea.id}" />
+                            <h:outputLabel value="#{projectIdeaBean.projectIdea.id}"/>
 
                             <h:inputText value="#{projectIdeaBean.projectIdea.id}" styleClass="hidden"/>
                             <h:panelGrid styleClass="hidden"/>
@@ -113,13 +113,13 @@
                             <h:panelGrid  styleClass="hidden"/>
 
                             <h:outputLabel value="Aims and objectives:" />
-                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}"/>
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}" required="true" requiredMessage="Aims and objectives is required"/>
 
                             <h:outputLabel value="Academic question to be answered (blank if unknown):" />
                             <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.academicQuestion}"/>
 
                             <h:outputLabel value="Anticipated deliverables:" />
-                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}"/>
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}" required="true" requiredMessage="Anticipated deliverables is required"/>
 
                             <h:outputLabel value="Student for whom project has been devised (blank if unknown):" />
                             <h:inputText value="#{projectIdeaBean.projectIdea.student}" />
