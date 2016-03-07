@@ -47,6 +47,13 @@ public class ProjectIdeaService {
         return projectIdeaFacade.searchApprovedOrAllocatedIdeasByTitle(title);
     }
 
+    public List<ProjectIdea> searchApprovedButUnallocatedProjectIdeasByTitle(String title) {
+        if (title == null || title.equals("")) {
+            return findAllApprovedButUnallocatedProjectIdeas();
+        }
+        return projectIdeaFacade.searchApprovedButUnallocatedIdeasByTitle(title);
+    }
+
     public void deleteProjectIdea(ProjectIdea projectIdea) {
         projectIdeaFacade.deleteProjectIdea(projectIdea);
     }

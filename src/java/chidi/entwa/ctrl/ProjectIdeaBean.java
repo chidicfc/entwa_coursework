@@ -168,5 +168,11 @@ public class ProjectIdeaBean {
         setApprovedOrAllocatedProjectIdeas(projectIdeas);
         return "home.xhtml";
     }
+    
+      public String doSearchApprovedButUnallocatedProjectIdeasByTitle(String title) {
+        List<ProjectIdea> projectIdeas = projectIdeaService.searchApprovedButUnallocatedProjectIdeasByTitle(title);
+        setApprovedButUnallocatedProjectIdeas(projectIdeas);
+        return "listApprovedIdea.xhtml";
+    }
 
 }
