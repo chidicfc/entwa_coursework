@@ -48,6 +48,8 @@ public class ProjectIdeaBean {
 
     private List<ProjectIdea> provisionalProjectIdeas;
 
+    private List<ProjectIdea> archivedProjectIdeas;
+
     public OrganisationBean getOrganisationBean() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         OrganisationBean orgBean = (OrganisationBean) facesContext.getApplication().getELResolver().
@@ -109,6 +111,17 @@ public class ProjectIdeaBean {
         this.provisionalProjectIdeas = provisionalProjectIdeas;
     }
 
+    public List<ProjectIdea> getArchivedProjectIdeas() {
+        if (archivedProjectIdeas == null) {
+            archivedProjectIdeas = getAllArchivedProjectIdeas();
+        }
+        return archivedProjectIdeas;
+    }
+
+    public void setArchivedProjectIdeas(List<ProjectIdea> archivedProjectIdeas) {
+        this.archivedProjectIdeas = archivedProjectIdeas;
+    }
+
     public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaService.addNewProjectIdea(projectIdea, organisation);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -135,6 +148,10 @@ public class ProjectIdeaBean {
         return projectIdeaService.findAllProvisionalProjectIdeas();
     }
 
+    public List<ProjectIdea> getAllArchivedProjectIdeas() {
+        return projectIdeaService.findAllArchivedProjectIdeas();
+    }
+
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
         organisationService.archiveOrganisation(organisation);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -142,6 +159,8 @@ public class ProjectIdeaBean {
                         "The organisation" + organisation.getName() + " has been archived"));
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
+        setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
+        setArchivedProjectIdeas(getAllArchivedProjectIdeas());
         return targetPage;
     }
 
@@ -152,6 +171,8 @@ public class ProjectIdeaBean {
                         "The organisation" + organisation.getName() + " has been unarchived"));
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
+        setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
+        setArchivedProjectIdeas(getAllArchivedProjectIdeas());
         return targetPage;
     }
 
@@ -177,6 +198,8 @@ public class ProjectIdeaBean {
                         "The project has been edited"));
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
+        setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
+        setArchivedProjectIdeas(getAllArchivedProjectIdeas());
         return targetPage;
     }
 
@@ -191,11 +214,17 @@ public class ProjectIdeaBean {
         setApprovedButUnallocatedProjectIdeas(projectIdeas);
         return "listApprovedIdea.xhtml";
     }
-    
-        public String doSearchProvisionalProjectIdeasByTitle(String title) {
+
+    public String doSearchProvisionalProjectIdeasByTitle(String title) {
         List<ProjectIdea> projectIdeas = projectIdeaService.searchProvisionalProjectIdeasByTitle(title);
         setProvisionalProjectIdeas(projectIdeas);
         return "listProvisionalIdea.xhtml";
+    }
+
+    public String doSearchArchivedProjectIdeasByTitle(String title) {
+        List<ProjectIdea> projectIdeas = projectIdeaService.searchArchivedProjectIdeasByTitle(title);
+        setArchivedProjectIdeas(projectIdeas);
+        return "listArchivedIdea.xhtml";
     }
 
 }

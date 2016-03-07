@@ -101,6 +101,19 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
         return query.getResultList();
     }
 
+    public List<ProjectIdea> getAllArchivedProjects() {
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus ORDER BY UPPER(p.title)", ProjectIdea.class);
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ARCHIVED);
+        return query.getResultList();
+    }
+
+    public List<ProjectIdea> searchArchivedIdeasByTitle(String title) {
+        TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
+        query.setParameter("title", "%" + title.toUpperCase() + "%");
+        query.setParameter("organisationStatus", Organisation.OrganisationState.ARCHIVED);
+        return query.getResultList();
+    }
+
     public List<ProjectIdea> searchProvisionalIdeasByTitle(String title) {
         TypedQuery<ProjectIdea> query = em.createQuery("SELECT p from ProjectIdea p WHERE p.organisation.status = :organisationStatus AND p.status = :status AND UPPER(p.title) LIKE :title ORDER BY UPPER(p.title)", ProjectIdea.class);
         query.setParameter("title", "%" + title.toUpperCase() + "%");

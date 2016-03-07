@@ -29,7 +29,7 @@
                 </h:form>
                 <h:form>
                     <h:commandButton image="../resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
-                    <h:commandButton image="../resources/images/trash.png"/>
+                    <h:commandButton image="../resources/images/trash.png" action="#{projectIdeaBean.doDeleteProjectIdea(projectIdea, 'listApprovedIdea.xhtml')}"/>
                 </h:form>
             </p:column>
 

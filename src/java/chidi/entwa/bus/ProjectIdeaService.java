@@ -44,6 +44,17 @@ public class ProjectIdeaService {
         return projectIdeaFacade.getAllProvisionalIdeas();
     }
 
+    public List<ProjectIdea> findAllArchivedProjectIdeas() {
+        return projectIdeaFacade.getAllArchivedProjects();
+    }
+
+    public List<ProjectIdea> searchArchivedProjectIdeasByTitle(String title) {
+        if (title == null || title.equals("")) {
+            return findAllArchivedProjectIdeas();
+        }
+        return projectIdeaFacade.searchArchivedIdeasByTitle(title);
+    }
+
     public List<ProjectIdea> searchApprovedOrAllocatedProjectIdeasByTitle(String title) {
         if (title == null || title.equals("")) {
             return findAllApprovedOrAllocatedProjectIdeas();
