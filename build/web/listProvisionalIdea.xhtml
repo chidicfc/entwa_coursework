@@ -32,8 +32,8 @@
                     <h:commandLink value="#{projectIdea.title}" action="#{projectIdeaBean.doViewProjectIdea(projectIdea)}"/>  
                 </h:form>
                 <h:form>
-                    <h:commandButton image="../resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
-                    <h:commandButton image="../resources/images/trash.png" action="#{projectIdeaBean.doDeleteProjectIdea(projectIdea, 'listProvisionalIdea.xhtml')}"/>
+                    <h:commandButton image="resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
+                    <h:commandButton image="resources/images/trash.png" action="#{projectIdeaBean.doDeleteProjectIdea(projectIdea, 'listProvisionalIdea.xhtml')}"/>
                 </h:form>
             </p:column>
 
@@ -43,8 +43,8 @@
                 </h:form>  
 
                 <h:form>
-                    <h:commandButton image="../resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(projectIdea.organisation)}"/>
-                    <h:commandButton image="../resources/images/archive-icon.png" action="#{projectIdeaBean.doArchiveOrganisation(projectIdea.organisation, 'listProvisionalIdea.xhtml')}"/>
+                    <h:commandButton image="resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(projectIdea.organisation)}"/>
+                    <h:commandButton image="resources/images/archive-icon.png" action="#{projectIdeaBean.doArchiveOrganisation(projectIdea.organisation, 'listProvisionalIdea.xhtml')}"/>
                 </h:form>
             </p:column>
 
