@@ -29,8 +29,10 @@ public class LogOutBean {
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpSession session = (HttpSession) externalContext.getSession(true);
 
-        session.invalidate();
-
+        if (session != null) {
+            session.invalidate();
+        }
+   
         return "index?faces-redirect=true";
     }
 }
