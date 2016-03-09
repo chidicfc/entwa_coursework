@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,7 +23,8 @@ import javax.validation.constraints.NotNull;
  * @author chidi
  */
 @Entity
-public class Group implements Serializable {
+@Table(name = "groups")
+public class UserGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,9 +38,9 @@ public class Group implements Serializable {
     private String description;
     
     @ManyToMany
-    @JoinTable(name = "user_groups", 
-            joinColumns = @JoinColumn(name = "group_id"), 
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "users_groups", 
+            joinColumns = @JoinColumn(name = "groups_id"), 
+            inverseJoinColumns = @JoinColumn(name = "users_id"))
     private List<User> users;
     
     
@@ -87,10 +89,10 @@ public class Group implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Group)) {
+        if (!(object instanceof UserGroup)) {
             return false;
         }
-        Group other = (Group) object;
+        UserGroup other = (UserGroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

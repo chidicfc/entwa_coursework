@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author chidi
  */
 @Entity
+@Table(name = "users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @NotNull
     private String username;
     
@@ -50,7 +52,7 @@ public class User implements Serializable {
     private String password;
     
     @ManyToMany(mappedBy = "users")
-    private List<Group> groups;
+    private List<UserGroup> groups;
 
     public Long getId() {
         return id;
@@ -108,11 +110,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public List<Group> getGroups() {
+    public List<UserGroup> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<UserGroup> groups) {
         this.groups = groups;
     }
     
