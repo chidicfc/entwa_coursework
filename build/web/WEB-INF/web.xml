@@ -50,6 +50,7 @@
         <web-resource-collection>
             <web-resource-name>User area</web-resource-name>
             <url-pattern>*.xhtml</url-pattern>
+            <url-pattern>*.css</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
             <http-method>HEAD</http-method>
@@ -62,5 +63,11 @@
             <role-name>ADMIN</role-name>
             <role-name>USER</role-name>
         </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Allowed resources</web-resource-name>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
     </security-constraint>
 </web-app>
