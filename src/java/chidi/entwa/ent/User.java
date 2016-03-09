@@ -36,10 +36,8 @@ public class User implements Serializable {
     @Column(nullable = false)
     @NotNull
     private String firstName;
-    
-    private String middleName;
-    
-    @Column(nullable = false)
+       
+    @Column(nullable = false, unique = true)
     @NotNull
     private String lastName;
     
@@ -76,14 +74,6 @@ public class User implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public String getLastName() {
