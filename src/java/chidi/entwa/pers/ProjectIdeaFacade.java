@@ -35,7 +35,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
 
     public void createProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         Date date = new Date();
-        projectIdea.setCreatedBy("Chidi Uba"); // change this
+        projectIdea.setCreatedBy(projectIdea.getCreatedBy());
         projectIdea.setDateSubmitted(date);
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);
@@ -45,7 +45,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         ProjectIdea p = find(projectIdea.getId());
         Date date = new Date();
-        projectIdea.setCreatedBy("Chidi Uba");
+        projectIdea.setCreatedBy(projectIdea.getCreatedBy());
         projectIdea.setDateSubmitted(p.getDateSubmitted());
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);

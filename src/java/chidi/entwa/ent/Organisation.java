@@ -8,13 +8,13 @@ package chidi.entwa.ent;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -147,7 +147,7 @@ public class Organisation implements Serializable {
     }
     
     public String getCreatedBy() {
-        return createdBy;
+        return createdBy = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
     }
 
     public void setCreatedBy(String createdBy) {

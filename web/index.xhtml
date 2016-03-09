@@ -21,6 +21,8 @@
 
     <ui:define name="content">
         <h3>All approved or allocated project ideas</h3>
+        
+        <p> <p:outputLabel value="#{projectIdeaBean.geteVal()}" /></p>
 
         <p:dataTable var="projectIdea" value="#{projectIdeaBean.approvedOrAllocatedProjectIdeas}" paginator="true" rows="10" id="projectIdeas">
             <p:column headerText="Idea #">

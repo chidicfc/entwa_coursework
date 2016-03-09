@@ -31,9 +31,9 @@ public class UserGroup implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @NotNull
-    private String name;
+    private String groupName;
     
     private String description;
     
@@ -53,12 +53,12 @@ public class UserGroup implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public String getDescription() {

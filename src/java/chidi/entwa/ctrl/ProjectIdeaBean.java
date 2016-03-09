@@ -15,6 +15,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.persistence.Transient;
 
 /**
  *
@@ -49,6 +50,9 @@ public class ProjectIdeaBean {
     private List<ProjectIdea> provisionalProjectIdeas;
 
     private List<ProjectIdea> archivedProjectIdeas;
+    
+    @Transient
+    private String eVal;
 
     public OrganisationBean getOrganisationBean() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -226,5 +230,15 @@ public class ProjectIdeaBean {
         setArchivedProjectIdeas(projectIdeas);
         return "listArchivedIdea.xhtml";
     }
+
+    public String geteVal() {
+        return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+    }
+
+    public void seteVal(String eVal) {
+        this.eVal = eVal;
+    }
+    
+    
 
 }

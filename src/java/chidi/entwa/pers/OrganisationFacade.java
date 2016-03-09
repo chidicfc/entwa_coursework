@@ -33,13 +33,13 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
 
     public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
-        organisation.setCreatedBy("Chidi Uba"); // change this
+        organisation.setCreatedBy(organisation.getCreatedBy());
         create(organisation);
     }
 
     public void editOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
-        organisation.setCreatedBy("Chidi Uba"); // change this
+        organisation.setCreatedBy(organisation.getCreatedBy());
         edit(organisation);
     }
 
