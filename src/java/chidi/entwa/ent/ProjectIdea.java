@@ -7,7 +7,6 @@ package chidi.entwa.ent;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -131,7 +130,7 @@ public class ProjectIdea implements Serializable {
     }
 
     public String getCreatedBy() {
-        return createdBy = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {

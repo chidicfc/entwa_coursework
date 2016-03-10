@@ -5,6 +5,7 @@
  */
 package chidi.entwa.ctrl;
 
+import chidi.entwa.bus.AuthorisationService;
 import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.bus.ProjectIdeaService;
 import chidi.entwa.ent.Organisation;
@@ -15,7 +16,6 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.Transient;
 
 /**
  *
@@ -37,6 +37,9 @@ public class ProjectIdeaBean {
     @EJB
     private OrganisationService organisationService;
 
+    @EJB
+    private AuthorisationService authorisationService;
+
     private OrganisationBean organisationBean;
 
     private ProjectIdea projectIdea = new ProjectIdea();
@@ -50,9 +53,6 @@ public class ProjectIdeaBean {
     private List<ProjectIdea> provisionalProjectIdeas;
 
     private List<ProjectIdea> archivedProjectIdeas;
-    
-    @Transient
-    private String eVal;
 
     public OrganisationBean getOrganisationBean() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -157,14 +157,23 @@ public class ProjectIdeaBean {
     }
 
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
-        organisationService.archiveOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
-                        "The organisation" + organisation.getName() + " has been archived"));
+        boolean val = authorisationService.canArchiveOrganisation(organisation);
+        if (authorisationService.canArchiveOrganisation(organisation)) {
+            organisationService.archiveOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
+                            "The organisation" + organisation.getName() + " has been archived"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "You don't have permission to perfom this action",
+                            "You don't have permission to perfom this action"));
+        }
+
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
+        
         return targetPage;
     }
 
@@ -232,14 +241,8 @@ public class ProjectIdeaBean {
     }
 
     public boolean geteVal() {
-       return FacesContext.getCurrentInstance().getExternalContext().isUserInRole("USER");
-       // return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        return FacesContext.getCurrentInstance().getExternalContext().isUserInRole("USER");
+        // return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
     }
-
-    public void seteVal(String eVal) {
-        this.eVal = eVal;
-    }
-    
-    
 
 }

@@ -5,10 +5,12 @@
  */
 package chidi.entwa.pers;
 
+import chidi.entwa.bus.CurrentUserService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +22,9 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
+    
+    @EJB
+    private CurrentUserService currentUserService;
 
     @PersistenceContext(unitName = "ProjectIdeasDatabasePU")
     private EntityManager em;
@@ -35,7 +40,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
 
     public void createProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         Date date = new Date();
-        projectIdea.setCreatedBy(projectIdea.getCreatedBy());
+        projectIdea.setCreatedBy(currentUserService.getCurrentUser());
         projectIdea.setDateSubmitted(date);
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);
@@ -45,7 +50,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     public void editProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         ProjectIdea p = find(projectIdea.getId());
         Date date = new Date();
-        projectIdea.setCreatedBy(projectIdea.getCreatedBy());
+        projectIdea.setCreatedBy(p.getCreatedBy());
         projectIdea.setDateSubmitted(p.getDateSubmitted());
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);
