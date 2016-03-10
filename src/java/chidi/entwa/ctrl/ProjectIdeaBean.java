@@ -231,8 +231,9 @@ public class ProjectIdeaBean {
         return "listArchivedIdea.xhtml";
     }
 
-    public String geteVal() {
-        return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+    public boolean geteVal() {
+       return FacesContext.getCurrentInstance().getExternalContext().isUserInRole("USER");
+       // return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
     }
 
     public void seteVal(String eVal) {
