@@ -38,9 +38,11 @@
                     <h:commandLink value="#{projectIdea.organisation.contactName} (#{projectIdea.organisation.name})" action="#{organisationBean.doViewOrganisation(projectIdea.organisation)}"/>  
                 </h:form>  
 
-                <h:form>
-                    <h:commandButton image="resources/images/unarchive.png" action="#{projectIdeaBean.doUnarchiveOrganisation(projectIdea.organisation, 'listArchivedIdea.xhtml')}"/>
-                </h:form>
+                <h:panelGroup rendered="#{request.isUserInRole('SUPERUSER') || request.isUserInRole('ADMIN') || request.remoteUser.equals(projectIdea.organisation.createdBy)}">
+                    <h:form>
+                        <h:commandButton image="resources/images/unarchive.png" action="#{projectIdeaBean.doUnarchiveOrganisation(projectIdea.organisation, 'listArchivedIdea.xhtml')}"/>
+                    </h:form>
+                </h:panelGroup>
             </p:column>
 
             <p:column headerText="Last Updated">
