@@ -218,11 +218,15 @@ public class ProjectIdeaBean {
     }
 
     public String doDeleteProjectIdea(ProjectIdea projectIdea, String targetPage) {
-        projectIdeaService.deleteProjectIdea(projectIdea);
+        if (authorisationService.canModifyProjectIdea(projectIdea)) {
+            projectIdeaService.deleteProjectIdea(projectIdea);
 
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea deleted",
-                        "The project has been edited"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea deleted",
+                            "The project has been edited"));
+        } else {
+            errorMessage();
+        }
 
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
