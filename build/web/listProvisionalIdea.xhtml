@@ -10,7 +10,7 @@
     <ui:define name="title">
         All provisional project ideas
     </ui:define>
-    
+
     <ui:define name="top">
 
         <p:inputText placeholder="Search ..." id="searchString" value="#{projectIdeaBean.projectIdea.title}">
@@ -31,21 +31,24 @@
                 <h:form>
                     <h:commandLink value="#{projectIdea.title}" action="#{projectIdeaBean.doViewProjectIdea(projectIdea)}"/>  
                 </h:form>
-                <h:form>
-                    <h:commandButton image="resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
-                    <h:commandButton image="resources/images/trash.png" action="#{projectIdeaBean.doDeleteProjectIdea(projectIdea, 'listProvisionalIdea.xhtml')}"/>
-                </h:form>
+                <h:panelGroup rendered="#{request.isUserInRole('SUPERUSER') || request.isUserInRole('ADMIN') || request.remoteUser.equals(projectIdea.createdBy)}">
+                    <h:form>
+                        <h:commandButton image="resources/images/pencil-icon.png" action="#{projectIdeaBean.doGetSelectedProjectIdea(projectIdea, projectIdea.organisation)}"/>
+                        <h:commandButton image="resources/images/trash.png" action="#{projectIdeaBean.doDeleteProjectIdea(projectIdea, 'listProvisionalIdea.xhtml')}"/>
+                    </h:form>
+                </h:panelGroup>
             </p:column>
 
             <p:column headerText="Owner (Organisation)">
                 <h:form>
                     <h:commandLink value="#{projectIdea.organisation.contactName} (#{projectIdea.organisation.name})" action="#{organisationBean.doViewOrganisation(projectIdea.organisation)}"/>  
                 </h:form>  
-
-                <h:form>
-                    <h:commandButton image="resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(projectIdea.organisation)}"/>
-                    <h:commandButton image="resources/images/archive-icon.png" action="#{projectIdeaBean.doArchiveOrganisation(projectIdea.organisation, 'listProvisionalIdea.xhtml')}"/>
-                </h:form>
+                <h:panelGroup rendered="#{request.isUserInRole('SUPERUSER') || request.isUserInRole('ADMIN') || request.remoteUser.equals(projectIdea.organisation.createdBy)}">
+                    <h:form>
+                        <h:commandButton image="resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(projectIdea.organisation)}"/>
+                        <h:commandButton image="resources/images/archive-icon.png" action="#{projectIdeaBean.doArchiveOrganisation(projectIdea.organisation, 'listProvisionalIdea.xhtml')}"/>
+                    </h:form>
+                </h:panelGroup>
             </p:column>
 
             <p:column headerText="Last Updated">
