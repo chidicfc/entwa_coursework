@@ -7,6 +7,7 @@ package chidi.entwa.bus;
 
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
+import chidi.entwa.pers.ProjectIdeaFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -16,8 +17,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class AuthorisationService {
+
     @EJB
     private CurrentUserService currentUserService;
+    
+     @EJB
+    private ProjectIdeaFacade projectIdeaFacade;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -30,19 +35,31 @@ public class AuthorisationService {
     }
 
     public boolean isOwnerOfProjectIdea(ProjectIdea projectIdea) {
-        return projectIdea.getCreatedBy().equals(currentUserService.getCurrentUser());
+        ProjectIdea p = projectIdeaFacade.find(projectIdea.getId());
+        String createdBy;
+        if (projectIdea.getCreatedBy() == null) {
+            createdBy = p.getCreatedBy();
+        } else {
+            createdBy = projectIdea.getCreatedBy();
+        }
+        return createdBy.equals(currentUserService.getCurrentUser());
     }
-    
-    public boolean isOwnerOfOrganisation(Organisation organisation){
+
+    public boolean isOwnerOfOrganisation(Organisation organisation) {
         return organisation.getCreatedBy().equals(currentUserService.getCurrentUser());
     }
-    
-    public boolean isAnonymous(){
+
+    public boolean isAnonymous() {
         return currentUserService.getExternalContext().isUserInRole("ANONYMOUS");
     }
-        
-    public boolean canArchiveOrganisation(Organisation organisation){
+
+    public boolean canModifyOrganisation(Organisation organisation) {
         boolean result = isSuperUser() || isAdmin() || isOwnerOfOrganisation(organisation);
+        return result;
+    }
+
+    public boolean canModifyProjectIdea(ProjectIdea projectIdea) {
+        boolean result = isSuperUser() || isAdmin() || isOwnerOfProjectIdea(projectIdea);
         return result;
     }
 }

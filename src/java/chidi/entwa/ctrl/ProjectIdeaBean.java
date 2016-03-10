@@ -163,7 +163,7 @@ public class ProjectIdeaBean {
     }
 
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
-        if (authorisationService.canArchiveOrganisation(organisation)) {
+        if (authorisationService.canModifyOrganisation(organisation)) {
             organisationService.archiveOrganisation(organisation);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
@@ -181,17 +181,20 @@ public class ProjectIdeaBean {
     }
 
     public String doUnarchiveOrganisation(Organisation organisation, String targetPage) {
-        organisationService.unarchiveOrganisation(organisation);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unrchived",
-                        "The organisation" + organisation.getName() + " has been unarchived"));
-        
+        if (authorisationService.canModifyOrganisation(organisation)) {
+            organisationService.unarchiveOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unrchived",
+                            "The organisation" + organisation.getName() + " has been unarchived"));
+        } else {
+            errorMessage();
+        }
+
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
-        
+
         return targetPage;
     }
 
@@ -202,27 +205,30 @@ public class ProjectIdeaBean {
     }
 
     public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        projectIdeaService.editProjectIdea(projectIdea, organisation);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",
-                        "The project" + projectIdea.getTitle() + " has been edited"));
+        if (authorisationService.canModifyProjectIdea(projectIdea)) {
+            projectIdeaService.editProjectIdea(projectIdea, organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",
+                            "The project" + projectIdea.getTitle() + " has been edited"));
+        } else {
+            errorMessage();
+        }
 
         return "submitAProjectIdea.xhtml";
     }
 
     public String doDeleteProjectIdea(ProjectIdea projectIdea, String targetPage) {
         projectIdeaService.deleteProjectIdea(projectIdea);
-        
+
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea deleted",
                         "The project has been edited"));
-        
+
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
-        
+
         return targetPage;
     }
 
