@@ -5,7 +5,8 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="./layout.xhtml">
+                template="./layout.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
         Organisations
@@ -30,10 +31,12 @@
                 <h:form>
                     <h:commandLink value="#{organisation.name}" action="#{organisationBean.doViewOrganisation(organisation)}"/>  
                 </h:form>
-                <h:form>
-                    <h:commandButton image="resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(organisation)}"/>
-                    <h:commandButton image="resources/images/archive-icon.png" action="#{organisationBean.doArchiveOrganisation(organisation, 'listActiveOrganisations.xhtml')}"/>
-                </h:form>
+                <h:panelGroup rendered="#{request.isUserInRole('SUPERUSER') || request.isUserInRole('ADMIN') || request.remoteUser.equals(organisation.createdBy)}">
+                    <h:form>
+                        <h:commandButton image="resources/images/pencil-icon.png" action="#{organisationBean.doGetSelectedOrganisation(organisation)}"/>
+                        <h:commandButton image="resources/images/archive-icon.png" action="#{organisationBean.doArchiveOrganisation(organisation, 'listActiveOrganisations.xhtml')}"/>
+                    </h:form>
+                </h:panelGroup>   
             </p:column>
 
             <p:column headerText="Postal address">

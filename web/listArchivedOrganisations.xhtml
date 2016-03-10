@@ -28,9 +28,12 @@
                 <h:form>
                     <h:commandLink value="#{organisation.name}" action="#{organisationBean.doViewOrganisation(organisation)}"/>  
                 </h:form>
-                <h:form>
-                    <h:commandButton image="resources/images/unarchive.png" action="#{organisationBean.doUnarchiveOrganisation(organisation, 'listArchivedOrganisations.xhtml')}"/>
-                </h:form>
+                <h:panelGroup rendered="#{request.isUserInRole('SUPERUSER') || request.isUserInRole('ADMIN') || request.remoteUser.equals(organisation.createdBy)}">
+                    <h:form>
+                        <h:commandButton image="resources/images/unarchive.png" action="#{organisationBean.doUnarchiveOrganisation(organisation, 'listArchivedOrganisations.xhtml')}"/>
+                    </h:form>
+                </h:panelGroup>
+                
             </p:column>
 
             <p:column headerText="Postal address">
