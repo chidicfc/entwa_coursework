@@ -156,36 +156,42 @@ public class ProjectIdeaBean {
         return projectIdeaService.findAllArchivedProjectIdeas();
     }
 
+    public void errorMessage() {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "You don't have permission to perfom this action",
+                        "You don't have permission to perfom this action"));
+    }
+
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
-        boolean val = authorisationService.canArchiveOrganisation(organisation);
         if (authorisationService.canArchiveOrganisation(organisation)) {
             organisationService.archiveOrganisation(organisation);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
                             "The organisation" + organisation.getName() + " has been archived"));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "You don't have permission to perfom this action",
-                            "You don't have permission to perfom this action"));
+            errorMessage();
         }
 
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
-        
+
         return targetPage;
     }
 
     public String doUnarchiveOrganisation(Organisation organisation, String targetPage) {
         organisationService.unarchiveOrganisation(organisation);
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unrchived",
                         "The organisation" + organisation.getName() + " has been unarchived"));
+        
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
+        
         return targetPage;
     }
 
@@ -197,6 +203,7 @@ public class ProjectIdeaBean {
 
     public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         projectIdeaService.editProjectIdea(projectIdea, organisation);
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",
                         "The project" + projectIdea.getTitle() + " has been edited"));
@@ -206,13 +213,16 @@ public class ProjectIdeaBean {
 
     public String doDeleteProjectIdea(ProjectIdea projectIdea, String targetPage) {
         projectIdeaService.deleteProjectIdea(projectIdea);
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea deleted",
                         "The project has been edited"));
+        
         setApprovedOrAllocatedProjectIdeas(getAllApprovedOrAllocatedProjectIdeas());
         setApprovedButUnallocatedProjectIdeas(getAllApprovedButUnallocatedProjectIdeas());
         setProvisionalProjectIdeas(getAllProvisionalProjectIdeas());
         setArchivedProjectIdeas(getAllArchivedProjectIdeas());
+        
         return targetPage;
     }
 
