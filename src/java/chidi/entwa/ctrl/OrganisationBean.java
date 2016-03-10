@@ -5,6 +5,7 @@
  */
 package chidi.entwa.ctrl;
 
+import chidi.entwa.bus.AuthorisationService;
 import chidi.entwa.bus.OrganisationService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.pers.OrganisationFacade;
@@ -34,6 +35,9 @@ public class OrganisationBean {
 
     @EJB
     private OrganisationFacade organisationFacade;
+
+    @EJB
+    private AuthorisationService authorisationService;
 
     private Organisation organisation = new Organisation();
 
@@ -72,10 +76,14 @@ public class OrganisationBean {
     }
 
     public String doCreateOrganisation() {
-        organisationService.addNewOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation created",
-                        "The organisation" + organisation.getName() + " has been created"));
+        if (authorisationService.canCreate()) {
+            organisationService.addNewOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation created",
+                            "The organisation" + organisation.getName() + " has been created"));
+        } else {
+            errorMessage();
+        }
 
         return "submitAProjectIdea.xhtml";
     }
@@ -96,29 +104,49 @@ public class OrganisationBean {
         return "submitAProjectIdea.xhtml";
     }
 
-    public String doEditOrganisation() {
-        organisationService.editOrganisation(organisation);
+    public void errorMessage() {
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
-                        "The organisation" + organisation.getName() + " has been edited"));
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "You don't have permission to perfom this action",
+                        "You don't have permission to perfom this action"));
+    }
+
+    public String doEditOrganisation() {
+        if (authorisationService.canModifyOrganisation(organisation)) {
+            organisationService.editOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation edited",
+                            "The organisation" + organisation.getName() + " has been edited"));
+        } else {
+            errorMessage();
+        }
 
         return "submitAProjectIdea.xhtml";
     }
 
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
-        organisationService.archiveOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
-                        "The organisation" + organisation.getName() + " has been archived"));
+        if (authorisationService.canModifyOrganisation(organisation)) {
+            organisationService.archiveOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation archived",
+                            "The organisation" + organisation.getName() + " has been archived"));
+        } else {
+            errorMessage();
+        }
+
         setOrganisations(getAllActiveOrganisations());
         return targetPage;
     }
 
     public String doUnarchiveOrganisation(Organisation organisation, String targetPage) {
-        organisationService.unarchiveOrganisation(organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unarchived",
-                        "The organisation" + organisation.getName() + " has been unarchived"));
+        if (authorisationService.canModifyOrganisation(organisation)) {
+            organisationService.unarchiveOrganisation(organisation);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Organisation unarchived",
+                            "The organisation" + organisation.getName() + " has been unarchived"));
+        } else {
+            errorMessage();
+        }
+
         setArchivedOrganisations(getAllArchivedOrganisations());
         return targetPage;
     }

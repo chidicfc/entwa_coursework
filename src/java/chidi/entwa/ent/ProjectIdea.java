@@ -71,6 +71,7 @@ public class ProjectIdea implements Serializable {
     private Date lastUpdated;
 
     @ManyToOne
+    @NotNull
     private Organisation organisation;
 
     public Long getId() {

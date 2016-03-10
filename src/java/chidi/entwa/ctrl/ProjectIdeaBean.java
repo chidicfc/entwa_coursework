@@ -127,10 +127,18 @@ public class ProjectIdeaBean {
     }
 
     public String doCreateProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        projectIdeaService.addNewProjectIdea(projectIdea, organisation);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",
-                        "The project" + projectIdea.getTitle() + " has been created"));
+        if (organisation == null) {
+            organisationErrorMessage();
+            return "submitAProjectIdea.xhtml";
+        } else if (authorisationService.canCreate()) {
+            projectIdeaService.addNewProjectIdea(projectIdea, organisation);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea created",
+                            "The project" + projectIdea.getTitle() + " has been created"));
+        } else {
+            errorMessage();
+        }
 
         return "submitAProjectIdea.xhtml";
     }
@@ -160,6 +168,12 @@ public class ProjectIdeaBean {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_WARN, "You don't have permission to perfom this action",
                         "You don't have permission to perfom this action"));
+    }
+
+    public void organisationErrorMessage() {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "Please choose an organisation",
+                        "Please choose an organisation"));
     }
 
     public String doArchiveOrganisation(Organisation organisation, String targetPage) {
@@ -205,7 +219,10 @@ public class ProjectIdeaBean {
     }
 
     public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        if (authorisationService.canModifyProjectIdea(projectIdea)) {
+        if (organisation == null){
+            organisationErrorMessage();
+            return "submitAProjectIdea.xhtml";
+        }else if (authorisationService.canModifyProjectIdea(projectIdea)) {
             projectIdeaService.editProjectIdea(projectIdea, organisation);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",
