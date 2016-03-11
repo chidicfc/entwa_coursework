@@ -8,6 +8,7 @@ package chidi.entwa.pers;
 import chidi.entwa.ent.User;
 import chidi.entwa.ent.Role;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,4 +42,10 @@ public class UserFacade extends AbstractFacade<User> {
         em.persist(role);
     }
 
+    public List<User> getAdminAndRegularUsers() {
+        TypedQuery<User> query = em.createQuery("SELECT u FROM  User u INNER JOIN u.roles r WHERE r.roleName in :roleNames ORDER BY UPPER(u.firstName)", User.class);
+        List<String> names = Arrays.asList("ADMIN", "USER");
+        query.setParameter("roleNames", names);
+        return query.getResultList();
+    }
 }

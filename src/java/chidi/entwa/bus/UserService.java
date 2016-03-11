@@ -7,6 +7,7 @@ package chidi.entwa.bus;
 
 import chidi.entwa.ent.User;
 import chidi.entwa.pers.UserFacade;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.EJB;
 
@@ -24,5 +25,9 @@ public class UserService {
 
     public void createUserInRole(User user, String roleName) {
         userFacade.createUserInRole(user, roleName);
+    }
+    
+    public List<User> getAdminAndRegularUsers(){
+        return userFacade.getAdminAndRegularUsers();
     }
 }

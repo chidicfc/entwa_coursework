@@ -20,15 +20,15 @@
     </ui:define>
 
     <ui:define name="content">
-        <h3>All Users</h3>
+        <h3>All Admin and Regular Users</h3>
 
-        <p:dataTable var="user" value="" paginator="true" rows="10" id="user">
+        <p:dataTable var="user" value="#{userBean.users}" paginator="true" rows="10" id="user">
             <p:column headerText="ID">
-                <h:outputText value="1" />
+                <h:outputText value="#{user.id}" />
             </p:column>
 
             <p:column headerText="Name">
-                <p><h:outputText value="Chidi Uba" /></p>
+                <p><h:outputText value="#{user.firstName} #{user.lastName}" /></p>
 
                 <h:form>
                     <h:commandButton image="../resources/images/pencil-icon.png" />
@@ -38,11 +38,11 @@
             </p:column>
 
             <p:column headerText="Username">
-                <h:outputText value="Username" />
+                <h:outputText value="#{user.username}" />
             </p:column>
 
             <p:column headerText="Email address">
-                <h:outputText value="Email address" />
+                <h:outputText value="#{user.emailAddress}" />
             </p:column>
 
         </p:dataTable>

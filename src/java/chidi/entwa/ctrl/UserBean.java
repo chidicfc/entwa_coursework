@@ -7,6 +7,7 @@ package chidi.entwa.ctrl;
 
 import chidi.entwa.bus.UserService;
 import chidi.entwa.ent.User;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -31,6 +32,8 @@ public class UserBean {
 
     private User user = new User();
     
+    private List<User> users;
+    
     private String roleName;
 
     public User getUser() {
@@ -48,6 +51,19 @@ public class UserBean {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
+    public List<User> getUsers() {
+        if (users == null){
+            users = getAdminAndRegularUsers();
+        }
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+    
+    
     
     public String doCreateUser(User user, String roleName) {
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
@@ -62,5 +78,9 @@ public class UserBean {
                             "The user" + user.getUsername() + " has been created"));
 
         return "/admin/manageUser.xhtml";
+    }
+    
+    public List<User> getAdminAndRegularUsers(){
+        return userService.getAdminAndRegularUsers();
     }
 }
