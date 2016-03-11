@@ -35,6 +35,8 @@ public class UserBean {
     private List<User> users;
     
     private String roleName;
+    
+    private String searchString;
 
     public User getUser() {
         return user;
@@ -62,8 +64,14 @@ public class UserBean {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-    
-    
+
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }
     
     public String doCreateUser(User user, String roleName) {
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
@@ -82,5 +90,11 @@ public class UserBean {
     
     public List<User> getAdminAndRegularUsers(){
         return userService.getAdminAndRegularUsers();
+    }
+    
+    public String doSearchAdminAndRegularUsersBy(String name){
+        List<User> searchedUsers = userService.searchAdminAndRegularUsersBy(name);
+        setUsers(searchedUsers);
+        return "index.xhtml";
     }
 }

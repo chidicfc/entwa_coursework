@@ -13,8 +13,8 @@
 
     <ui:define name="top">
 
-        <p:inputText placeholder="Search users" id="searchString">
-
+        <p:inputText placeholder="Search users" id="searchString" value="#{userBean.searchString}">
+            <p:ajax update=":users" process="searchString" event="keyup" listener="#{userBean.doSearchAdminAndRegularUsersBy(userBean.searchString)}"/>
         </p:inputText>
 
     </ui:define>
@@ -22,7 +22,7 @@
     <ui:define name="content">
         <h3>All Admin and Regular Users</h3>
 
-        <p:dataTable var="user" value="#{userBean.users}" paginator="true" rows="10" id="user">
+        <p:dataTable var="user" value="#{userBean.users}" paginator="true" rows="10" id="users">
             <p:column headerText="ID">
                 <h:outputText value="#{user.id}" />
             </p:column>

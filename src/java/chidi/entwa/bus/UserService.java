@@ -30,4 +30,11 @@ public class UserService {
     public List<User> getAdminAndRegularUsers(){
         return userFacade.getAdminAndRegularUsers();
     }
+    
+    public List<User> searchAdminAndRegularUsersBy(String name){
+        if (name == null || name.equals("")) {
+            return getAdminAndRegularUsers();
+        }
+        return userFacade.searchAdminAndRegularUsersByName(name);
+    }
 }

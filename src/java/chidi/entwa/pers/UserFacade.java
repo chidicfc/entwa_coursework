@@ -48,4 +48,13 @@ public class UserFacade extends AbstractFacade<User> {
         query.setParameter("roleNames", names);
         return query.getResultList();
     }
+
+    public List<User> searchAdminAndRegularUsersByName(String name) {
+        TypedQuery<User> query = em.createQuery("SELECT u FROM  User u INNER JOIN u.roles r WHERE r.roleName in :roleNames AND (UPPER(u.firstName) LIKE :firstName OR UPPER(u.lastName) LIKE :lastName) ORDER BY UPPER(u.firstName)", User.class);
+        List<String> names = Arrays.asList("ADMIN", "USER");
+        query.setParameter("roleNames", names);
+        query.setParameter("firstName", "%" + name.toUpperCase() + "%");
+        query.setParameter("lastName", "%" + name.toUpperCase() + "%");
+        return query.getResultList();
+    }
 }
