@@ -43,7 +43,7 @@
             <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>ADMIN</role-name>
+            <role-name>SUPERUSER</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -62,6 +62,8 @@
         <auth-constraint>
             <role-name>ADMIN</role-name>
             <role-name>USER</role-name>
+            <role-name>ANONYMOUS</role-name>
+            <role-name>SUPERUSER</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -75,5 +77,11 @@
     </security-role>
     <security-role>
         <role-name>USER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ANONYMOUS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>SUPERUSER</role-name>
     </security-role>
 </web-app>

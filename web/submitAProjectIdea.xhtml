@@ -83,8 +83,8 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Organisation" action="#{organisationBean.doCreateOrganisation}" />
-                            <h:commandButton value="Edit Organisation" action="#{organisationBean.doEditOrganisation}"/>
+                            <h:commandButton value="CREATE ORGANISATION" action="#{organisationBean.doCreateOrganisation}" rendered="#{organisationBean.organisation.id == null}"/>
+                            <h:commandButton value="EDIT ORGANISATION" action="#{organisationBean.doEditOrganisation}" rendered="#{organisationBean.organisation.id != null}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:column>
@@ -139,8 +139,8 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="Create Project Idea" action="#{projectIdeaBean.doCreateProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}"/>
-                            <h:commandButton value="Edit Project Idea" action="#{projectIdeaBean.doEditProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}" />
+                            <h:commandButton value="CREATE PROJECT IDEA" action="#{projectIdeaBean.doCreateProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}" rendered="#{projectIdeaBean.projectIdea.id == null}"/>
+                            <h:commandButton value="EDIT PROJECT IDEA" action="#{projectIdeaBean.doEditProjectIdea(projectIdeaBean.projectIdea, organisationBean.organisation)}" rendered="#{projectIdeaBean.projectIdea.id != null}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:column>
