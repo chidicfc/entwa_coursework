@@ -15,7 +15,7 @@
                 <h:outputStylesheet library="css" name="style.css"/>
                 <title>
                     <ui:insert name="title">
-                        MSc Project Ideas Database
+                        Admin area
                     </ui:insert>
                 </title>
             </f:facet>
@@ -28,7 +28,7 @@
                 <p:layoutUnit position="north" size="70" resizable="false" closable="false" collapsible="false">
                     <h:form>  
                         <p:menubar>  
-                            <p:menuitem value="SUMS2016" url="index.xhtml" />
+                            <p:menuitem value="SUMS2016" url="../index.xhtml" />
                             <f:facet name="options">
                                 <ui:insert name="top">
                                     <p:inputText placeholder="Search"/>
@@ -49,15 +49,9 @@
                 <p:layoutUnit position="west" size="200" header="" collapsible="false">
                     <h:form>
                         <p:menu>
-                            <p:menuitem value="List all approved and allocated ideas" url="index.xhtml" />
-                            <p:menuitem value="List all approved (but unallocated) ideas" url="listApprovedIdea.xhtml" />
-                            <p:menuitem value="List provisional ideas" url="listProvisionalIdea.xhtml" />
-                            <p:menuitem value="List all archived ideas" url="listArchivedIdea.xhtml" />
-                            <p:menuitem value="Add a project idea" url="submitAProjectIdea.xhtml" />
-                            <p:menuitem value="Add an organisation" url="submitAProjectIdea.xhtml" />
-                            <p:menuitem value="List all active organisations" url="listActiveOrganisations.xhtml" />
-                            <p:menuitem value="List all archived organisations" url="listArchivedOrganisations.xhtml" />
-                            <p:menuitem value="Admin Area" url="admin/index.xhtml" rendered="#{request.isUserInRole('SUPERUSER')}"/>
+                            <p:menuitem value="List all users" url="index.xhtml" />
+                            <p:menuitem value="Create a user" url="manageUser.xhtml" />
+                            <p:menuitem value="Non-admin Area" url="../index.xhtml"/>
                         </p:menu>
                     </h:form>
                 </p:layoutUnit>

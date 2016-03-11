@@ -50,6 +50,7 @@ public class User implements Serializable {
     private String password;
     
     @ManyToMany(mappedBy = "users")
+    @NotNull
     private List<UserGroup> groups;
 
     public Long getId() {

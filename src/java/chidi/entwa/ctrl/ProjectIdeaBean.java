@@ -276,10 +276,4 @@ public class ProjectIdeaBean {
         setArchivedProjectIdeas(projectIdeas);
         return "listArchivedIdea.xhtml";
     }
-
-    public boolean geteVal() {
-        return FacesContext.getCurrentInstance().getExternalContext().isUserInRole("USER");
-        // return eVal = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-    }
-
 }

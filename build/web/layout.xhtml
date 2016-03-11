@@ -44,8 +44,6 @@
 
                 <p:layoutUnit position="south" size="50" closable="false" collapsible="false">
                     <p:outputLabel value="MSc Project Ideas Database" class="footer" />
-                    <p:outputLabel value="#{request.remoteUser}" />
-                    <p:outputLabel value="#{request.isUserInRole('ADMIN')}" />
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="200" header="" collapsible="false">
@@ -59,6 +57,7 @@
                             <p:menuitem value="Add an organisation" url="submitAProjectIdea.xhtml" />
                             <p:menuitem value="List all active organisations" url="listActiveOrganisations.xhtml" />
                             <p:menuitem value="List all archived organisations" url="listArchivedOrganisations.xhtml" />
+                            <p:menuitem value="Admin Area" url="admin/index.xhtml" rendered="#{request.isUserInRole('SUPERUSER')}"/>
                         </p:menu>
                     </h:form>
                 </p:layoutUnit>
