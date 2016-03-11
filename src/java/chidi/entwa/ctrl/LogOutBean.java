@@ -32,7 +32,8 @@ public class LogOutBean {
         if (session != null) {
             session.invalidate();
         }
-   
-        return "index?faces-redirect=true";
+        
+        return "/index.xhtml?faces-redirect=true";
     }
+    
 }
