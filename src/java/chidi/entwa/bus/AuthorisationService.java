@@ -20,7 +20,7 @@ import javax.ejb.Stateless;
 public class AuthorisationService {
 
     @EJB
-    private CurrentUserService currentUserService;
+    private SessionService sessionService;
 
     @EJB
     private ProjectIdeaFacade projectIdeaFacade;
@@ -31,11 +31,11 @@ public class AuthorisationService {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     public boolean isAdmin() {
-        return currentUserService.getExternalContext().isUserInRole("ADMIN");
+        return sessionService.getExternalContext().isUserInRole("ADMIN");
     }
 
     public boolean isSuperUser() {
-        return currentUserService.getExternalContext().isUserInRole("SUPERUSER");
+        return sessionService.getExternalContext().isUserInRole("SUPERUSER");
     }
 
     public boolean isOwnerOfProjectIdea(ProjectIdea projectIdea) {
@@ -46,7 +46,7 @@ public class AuthorisationService {
         } else {
             createdBy = projectIdea.getCreatedBy();
         }
-        return createdBy.equals(currentUserService.getCurrentUser());
+        return createdBy.equals(sessionService.getCurrentUser());
     }
 
     public boolean isOwnerOfOrganisation(Organisation organisation) {  
@@ -58,15 +58,15 @@ public class AuthorisationService {
             createdBy = organisation.getCreatedBy();
         }
         
-        return createdBy.equals(currentUserService.getCurrentUser());
+        return createdBy.equals(sessionService.getCurrentUser());
     }
 
     public boolean isUser() {
-        return currentUserService.getExternalContext().isUserInRole("USER");
+        return sessionService.getExternalContext().isUserInRole("USER");
     }
 
     public boolean isAnonymous() {
-        return currentUserService.getExternalContext().isUserInRole("ANONYMOUS");
+        return sessionService.getExternalContext().isUserInRole("ANONYMOUS");
     }
 
     public boolean canModifyOrganisation(Organisation organisation) {

@@ -7,6 +7,7 @@ package chidi.entwa.ent;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,20 +25,20 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "groups")
-public class UserGroup implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(nullable = false, unique = true)
+    @Column(name = "groupName", nullable = false, unique = true)
     @NotNull
-    private String groupName;
+    private String roleName;
     
     private String description;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "users_groups", 
             joinColumns = @JoinColumn(name = "groups_id"), 
             inverseJoinColumns = @JoinColumn(name = "users_id"))
@@ -53,12 +54,12 @@ public class UserGroup implements Serializable {
         this.id = id;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getDescription() {
@@ -89,10 +90,10 @@ public class UserGroup implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserGroup)) {
+        if (!(object instanceof Role)) {
             return false;
         }
-        UserGroup other = (UserGroup) object;
+        Role other = (Role) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

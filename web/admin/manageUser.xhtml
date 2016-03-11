@@ -31,25 +31,25 @@
                             <h:panelGroup />
 
                             <h:outputLabel value="First Name:" />
-                            <h:inputText required="true" requiredMessage="First name is required"/>
+                            <h:inputText value="#{userBean.user.firstName}" required="true" requiredMessage="First name is required"/>
 
                             <h:outputLabel value="Last Name:" />
-                            <h:inputText required="true" requiredMessage="Last name is required"/>
+                            <h:inputText value="#{userBean.user.lastName}" required="true" requiredMessage="Last name is required"/>
 
                             <h:outputLabel value="Username:" />
-                            <h:inputText required="true" requiredMessage="Username is required"/>
+                            <h:inputText value="#{userBean.user.username}" required="true" requiredMessage="Username is required"/>
 
                             <h:outputLabel value="Email address:" />
-                            <h:inputText required="true" requiredMessage="Email address is required"/>
+                            <h:inputText value="#{userBean.user.emailAddress}" required="true" requiredMessage="Email address is required"/>
 
                             <h:outputLabel value="Password:" />
-                            <h:inputSecret required="true" requiredMessage="Password is required" />
+                            <h:inputSecret value="#{userBean.user.password}" required="true" requiredMessage="Password is required" />
 
                             <h:outputLabel value="Confirm Password:" />
-                            <h:inputSecret required="true" requiredMessage="Confirm Password is required" />
+                            <h:inputSecret value="#{userBean.user.confirmPassword}" required="true" requiredMessage="Confirm Password is required" />
                             
                             <h:outputLabel value="Select role:" />
-                             <p:selectOneMenu id="role" value="" style="width:125px">
+                            <p:selectOneMenu id="roleName" value="#{userBean.roleName}" style="width:125px">
                                 <f:selectItem itemLabel="Select status" itemValue="Select role" />
                                 <f:selectItem itemLabel="ADMIN" itemValue="ADMIN" />
                                 <f:selectItem itemLabel="USER" itemValue="USER" />
@@ -61,7 +61,7 @@
                             <h:panelGroup />
                             <h:panelGroup />
 
-                            <h:commandButton value="CREATE" />
+                            <h:commandButton value="CREATE" action="#{userBean.doCreateUser(userBean.user, userBean.roleName)}"/>
                             <h:commandButton value="EDIT" />
                         </h:panelGrid>
                     </h:form>

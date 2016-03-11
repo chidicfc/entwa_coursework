@@ -5,7 +5,7 @@
  */
 package chidi.entwa.pers;
 
-import chidi.entwa.bus.CurrentUserService;
+import chidi.entwa.bus.SessionService;
 import chidi.entwa.ent.Organisation;
 import chidi.entwa.ent.ProjectIdea;
 import java.util.Date;
@@ -24,7 +24,7 @@ import javax.persistence.TypedQuery;
 public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     
     @EJB
-    private CurrentUserService currentUserService;
+    private SessionService sessionService;
 
     @PersistenceContext(unitName = "ProjectIdeasDatabasePU")
     private EntityManager em;
@@ -40,7 +40,7 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
 
     public void createProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         Date date = new Date();
-        projectIdea.setCreatedBy(currentUserService.getCurrentUser());
+        projectIdea.setCreatedBy(sessionService.getCurrentUser());
         projectIdea.setDateSubmitted(date);
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);

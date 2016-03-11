@@ -5,25 +5,24 @@
  */
 package chidi.entwa.bus;
 
+import chidi.entwa.ent.User;
+import chidi.entwa.pers.UserFacade;
 import javax.ejb.Stateless;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.ejb.EJB;
 
 /**
  *
  * @author chidi
  */
 @Stateless
-public class CurrentUserService {
+public class UserService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
-    public ExternalContext getExternalContext() {
-        return FacesContext.getCurrentInstance().getExternalContext();
-    }
-    
-    public String getCurrentUser(){
-        return getExternalContext().getRemoteUser();
+    @EJB
+    private UserFacade userFacade;
+
+    public void createUserInRole(User user, String roleName) {
+        userFacade.createUserInRole(user, roleName);
     }
 }

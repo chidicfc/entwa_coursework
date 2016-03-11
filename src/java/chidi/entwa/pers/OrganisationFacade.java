@@ -5,7 +5,7 @@
  */
 package chidi.entwa.pers;
 
-import chidi.entwa.bus.CurrentUserService;
+import chidi.entwa.bus.SessionService;
 import chidi.entwa.ent.Organisation;
 import java.util.List;
 import javax.ejb.EJB;
@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 public class OrganisationFacade extends AbstractFacade<Organisation> {
     
     @EJB
-    private CurrentUserService currentUserService;
+    private SessionService sessionService;
 
     @PersistenceContext(unitName = "ProjectIdeasDatabasePU")
     private EntityManager em;
@@ -38,7 +38,7 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     
     public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
-        organisation.setCreatedBy(currentUserService.getCurrentUser());
+        organisation.setCreatedBy(sessionService.getCurrentUser());
         create(organisation);
     }
 

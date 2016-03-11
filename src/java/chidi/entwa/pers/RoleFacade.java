@@ -5,7 +5,7 @@
  */
 package chidi.entwa.pers;
 
-import chidi.entwa.ent.UserGroup;
+import chidi.entwa.ent.Role;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author chidi
  */
 @Stateless
-public class UserGroupFacade extends AbstractFacade<UserGroup> {
+public class RoleFacade extends AbstractFacade<Role> {
 
     @PersistenceContext(unitName = "ProjectIdeasDatabasePU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class UserGroupFacade extends AbstractFacade<UserGroup> {
         return em;
     }
 
-    public UserGroupFacade() {
-        super(UserGroup.class);
+    public RoleFacade() {
+        super(Role.class);
     }
-    
+        
 }
