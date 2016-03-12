@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author chidi
  */
-@Entity
+@Entity(name = "User")
 @Table(name = "users")
 public class User implements Serializable {
 

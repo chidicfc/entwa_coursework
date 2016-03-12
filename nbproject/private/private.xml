@@ -3,7 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/pers/OrganisationFacade.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/bus/SessionService.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/web/submitAProjectIdea.xhtml</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/pers/ProjectIdeaFacade.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ctrl/OrganisationBean.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ctrl/UserBean.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ent/Organisation.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/bus/UserService.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/web/admin/manageUser.xhtml</file>
             <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ent/ProjectIdea.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ctrl/LogOutBean.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/bus/ProjectIdeaService.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ctrl/ProjectIdeaBean.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ent/Role.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/web/admin/index.xhtml</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/pers/UserFacade.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/pers/RoleFacade.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/web/index.xhtml</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/pers/AbstractFacade.java</file>
+            <file>file:/Users/chidi/NetBeansProjects/ProjectIdeasDatabase/src/java/chidi/entwa/ent/User.java</file>
         </group>
     </open-files>
 </project-private>

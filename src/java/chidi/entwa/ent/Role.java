@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author chidi
  */
-@Entity
+@Entity(name = "Role")
 @Table(name = "groups")
 public class Role implements Serializable {
 

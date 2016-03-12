@@ -7,9 +7,7 @@ package chidi.entwa.pers;
 
 import chidi.entwa.ent.User;
 import chidi.entwa.ent.Role;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
