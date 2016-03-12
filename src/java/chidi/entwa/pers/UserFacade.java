@@ -46,21 +46,30 @@ public class UserFacade extends AbstractFacade<User> {
     public void editUser(User user, String roleName) {
         TypedQuery<Role> r = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
         Role role = r.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
-       
-        User usr = find(user.getId());
-        
-        Role initialRole = usr.getRoles().get(0);
-        user.setPassword((usr.getPassword()));
-        
-        if(initialRole == role){
-            role.getUsers().remove(usr);
-        } else {
-            initialRole.getUsers().remove(usr);
-        }
-        //user.setPassword((usr.getPassword()));
-        role.getUsers().add(user);
-        em.merge(role);
 
+        User usr = find(user.getId());
+
+        Role initialRole = usr.getRoles().get(0);
+        //user.setPassword((usr.getPassword()));
+        //user.setId(usr.getId());
+
+        usr.setFirstName(user.getFirstName());
+        usr.setLastName(user.getLastName());
+        usr.setEmailAddress(user.getEmailAddress());
+        usr.setUsername(user.getUsername());
+        em.merge(usr);
+
+        if (initialRole != role) {
+            initialRole.getUsers().remove(usr);
+            em.merge(initialRole);
+            usr.getRoles().clear();
+            role.getUsers().add(usr);
+            usr.getRoles().add(role);
+            em.merge(usr);
+            em.merge(role);
+        }
+
+        //user.setPassword((usr.getPassword()));
     }
 
     public List<User> getAdminAndRegularUsers() {
