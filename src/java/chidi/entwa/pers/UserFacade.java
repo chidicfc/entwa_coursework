@@ -52,8 +52,6 @@ public class UserFacade extends AbstractFacade<User> {
         User usr = find(user.getId());
 
         Role initialRole = usr.getRoles().get(0);
-        //user.setPassword((usr.getPassword()));
-        //user.setId(usr.getId());
 
         usr.setFirstName(user.getFirstName());
         usr.setLastName(user.getLastName());
@@ -71,7 +69,14 @@ public class UserFacade extends AbstractFacade<User> {
             em.merge(role);
         }
 
-        //user.setPassword((usr.getPassword()));
+    }
+
+    public void deleteUser(User user) {
+        Role role = user.getRoles().get(0);
+        role.getUsers().remove(user);
+        em.merge(role);
+        remove(user);
+
     }
 
     public List<User> getAdminAndRegularUsers() {

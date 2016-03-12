@@ -32,7 +32,7 @@
 
                 <h:form>
                     <h:commandButton image="../resources/images/pencil-icon.png" action="#{userBean.doGetSelectedUser(user)}"/>
-                    <h:commandButton image="../resources/images/trash.png" />
+                    <h:commandButton image="../resources/images/trash.png" action="#{userBean.doDeleteUser(user)}"/>
                 </h:form>
 
             </p:column>

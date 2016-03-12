@@ -109,12 +109,22 @@ public class UserBean {
     }
 
     public String doEditUser(User user, String roleName) {
-        
+
         userService.editUser(user, roleName);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "User edited",
                         "The user" + user.getUsername() + " has been edited"));
 
         return "manageUser.xhtml";
+    }
+
+    public String doDeleteUser(User user) {
+
+        userService.deleteUser(user);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "User deleted",
+                        "The user has been edited"));
+        setUsers(getAdminAndRegularUsers());
+        return "index.xhtml";
     }
 }

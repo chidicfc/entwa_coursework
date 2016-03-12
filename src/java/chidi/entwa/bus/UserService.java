@@ -41,4 +41,8 @@ public class UserService {
     public void editUser(User user, String roleName) {
         userFacade.editUser(user, roleName);
     }
+    
+    public void deleteUser(User user) {
+        userFacade.deleteUser(user);
+    }
 }
