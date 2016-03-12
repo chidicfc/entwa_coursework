@@ -7,6 +7,7 @@ package chidi.entwa.pers;
 
 import chidi.entwa.ent.User;
 import chidi.entwa.ent.Role;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -38,6 +39,9 @@ public class UserFacade extends AbstractFacade<User> {
         Role role = r.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
         user.setPassword(User.md5Hash(user.getPassword()));
         role.getUsers().add(user);
+        List<Role> roles = new ArrayList();
+        roles.add(role);
+        user.setRoles(roles);
         em.persist(role);
     }
 
