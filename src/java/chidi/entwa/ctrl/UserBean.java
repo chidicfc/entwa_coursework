@@ -31,11 +31,11 @@ public class UserBean {
     private UserService userService;
 
     private User user = new User();
-    
+
     private List<User> users;
-    
+
     private String roleName;
-    
+
     private String searchString;
 
     public User getUser() {
@@ -47,6 +47,11 @@ public class UserBean {
     }
 
     public String getRoleName() {
+        if (roleName == null && user.getId() != null) {
+            // assumes a user will be assigned to one role even
+            // though a many to many relationship exists
+            roleName = user.getRoles().get(0).getRoleName();
+        }
         return roleName;
     }
 
@@ -55,7 +60,7 @@ public class UserBean {
     }
 
     public List<User> getUsers() {
-        if (users == null){
+        if (users == null) {
             users = getAdminAndRegularUsers();
         }
         return users;
@@ -72,7 +77,7 @@ public class UserBean {
     public void setSearchString(String searchString) {
         this.searchString = searchString;
     }
-    
+
     public String doCreateUser(User user, String roleName) {
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -81,20 +86,35 @@ public class UserBean {
             return "/admin/manageUser.xhtml";
         }
         userService.createUserInRole(user, roleName);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "User created",
-                            "The user" + user.getUsername() + " has been created"));
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "User created",
+                        "The user" + user.getUsername() + " has been created"));
 
         return "/admin/manageUser.xhtml";
     }
-    
-    public List<User> getAdminAndRegularUsers(){
+
+    public List<User> getAdminAndRegularUsers() {
         return userService.getAdminAndRegularUsers();
     }
-    
-    public String doSearchAdminAndRegularUsersBy(String name){
+
+    public String doSearchAdminAndRegularUsersBy(String name) {
         List<User> searchedUsers = userService.searchAdminAndRegularUsersBy(name);
         setUsers(searchedUsers);
         return "index.xhtml";
+    }
+
+    public String doGetSelectedUser(User user) {
+        setUser(user);
+        return "manageUser.xhtml";
+    }
+
+    public String doEditUser(User user, String roleName) {
+        
+        userService.editUser(user, roleName);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "User edited",
+                        "The user" + user.getUsername() + " has been edited"));
+
+        return "manageUser.xhtml";
     }
 }

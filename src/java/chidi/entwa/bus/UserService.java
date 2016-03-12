@@ -22,19 +22,23 @@ public class UserService {
     // "Insert Code > Add Business Method")
     @EJB
     private UserFacade userFacade;
-
+    
     public void createUserInRole(User user, String roleName) {
         userFacade.createUserInRole(user, roleName);
     }
     
-    public List<User> getAdminAndRegularUsers(){
+    public List<User> getAdminAndRegularUsers() {
         return userFacade.getAdminAndRegularUsers();
     }
     
-    public List<User> searchAdminAndRegularUsersBy(String name){
+    public List<User> searchAdminAndRegularUsersBy(String name) {
         if (name == null || name.equals("")) {
             return getAdminAndRegularUsers();
         }
         return userFacade.searchAdminAndRegularUsersByName(name);
+    }
+    
+    public void editUser(User user, String roleName) {
+        userFacade.editUser(user, roleName);
     }
 }

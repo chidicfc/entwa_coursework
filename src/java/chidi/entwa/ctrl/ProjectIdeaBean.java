@@ -219,10 +219,10 @@ public class ProjectIdeaBean {
     }
 
     public String doEditProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
-        if (organisation == null){
+        if (organisation == null) {
             organisationErrorMessage();
             return "submitAProjectIdea.xhtml";
-        }else if (authorisationService.canModifyProjectIdea(projectIdea)) {
+        } else if (authorisationService.canModifyProjectIdea(projectIdea)) {
             projectIdeaService.editProjectIdea(projectIdea, organisation);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Project Idea edited",

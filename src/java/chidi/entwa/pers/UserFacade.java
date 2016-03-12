@@ -9,6 +9,7 @@ import chidi.entwa.ent.User;
 import chidi.entwa.ent.Role;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,6 +41,26 @@ public class UserFacade extends AbstractFacade<User> {
         user.setPassword(User.md5Hash(user.getPassword()));
         role.getUsers().add(user);
         em.persist(role);
+    }
+
+    public void editUser(User user, String roleName) {
+        TypedQuery<Role> r = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
+        Role role = r.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
+       
+        User usr = find(user.getId());
+        
+        Role initialRole = usr.getRoles().get(0);
+        user.setPassword((usr.getPassword()));
+        
+        if(initialRole == role){
+            role.getUsers().remove(usr);
+        } else {
+            initialRole.getUsers().remove(usr);
+        }
+        //user.setPassword((usr.getPassword()));
+        role.getUsers().add(user);
+        em.merge(role);
+
     }
 
     public List<User> getAdminAndRegularUsers() {
