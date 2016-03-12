@@ -62,7 +62,7 @@
                             <h:panelGroup />
 
                             <h:commandButton value="CREATE USER" action="#{userBean.doCreateUser(userBean.user, userBean.roleName)}" rendered="#{userBean.user.id == null}"/>
-                            <h:commandButton value="EDIT USER" action="#{userBean.doEditUser(userBean.user, userBean.roleName)}"/>
+                            <h:commandButton value="EDIT USER" action="#{userBean.doEditUser(userBean.user, userBean.roleName)}" rendered="#{userBean.user.id != null}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:column>
