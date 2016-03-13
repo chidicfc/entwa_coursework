@@ -27,44 +27,50 @@ public class Organisation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     @NotNull
     private String name;
-    
+
     @Column(nullable = false)
     @NotNull
-    private String postalAddress; 
-    
+    private String postalAddress;
+
     @Column(nullable = false)
     @NotNull
     private String postCode;
-    
+
     @Column(nullable = false)
     @NotNull
     private String outline;
-    
+
+    @Column(nullable = false)
+    @NotNull
     private String contactName;
-    
+
+    @Column(nullable = false)
+    @NotNull
     private String emailAddress;
-    
+
+    @Column(nullable = false)
+    @NotNull
     private String telephoneNumber;
-    
+
     @OneToMany(mappedBy = "organisation")
     private Set<ProjectIdea> projectIdeas = new HashSet<>();
-    
+
     public enum OrganisationState {
         ACTIVE, ARCHIVED
     }
-    
+
     @Column(nullable = false)
     @NotNull
     private OrganisationState status;
-    
+
     @Column(nullable = false)
     @NotNull
     private String createdBy;
-    
+
     public Long getId() {
         return id;
     }
@@ -136,7 +142,7 @@ public class Organisation implements Serializable {
     public void setProjectIdeas(Set<ProjectIdea> projectIdeas) {
         this.projectIdeas = projectIdeas;
     }
-    
+
     public OrganisationState getStatus() {
         return status;
     }
@@ -144,7 +150,7 @@ public class Organisation implements Serializable {
     public void setStatus(OrganisationState status) {
         this.status = status;
     }
-    
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -152,8 +158,7 @@ public class Organisation implements Serializable {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -176,5 +181,5 @@ public class Organisation implements Serializable {
         //return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
         return (name + " [" + contactName + "]" + " (" + id + ")");
     }
-    
+
 }

@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class OrganisationFacade extends AbstractFacade<Organisation> {
-    
+
     @EJB
     private SessionService sessionService;
 
@@ -35,10 +35,15 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
     public OrganisationFacade() {
         super(Organisation.class);
     }
-    
+
     public void createOrganisation(Organisation organisation) {
         organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         organisation.setCreatedBy(sessionService.getCurrentUser());
+        create(organisation);
+    }
+
+    public void saveOrganisation(Organisation organisation) {
+        organisation.setStatus(Organisation.OrganisationState.ACTIVE);
         create(organisation);
     }
 
