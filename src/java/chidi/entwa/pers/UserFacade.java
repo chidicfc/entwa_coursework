@@ -35,8 +35,8 @@ public class UserFacade extends AbstractFacade<User> {
     }
 
     public void createUserInRole(User user, String roleName) {
-        TypedQuery<Role> r = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
-        Role role = r.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
+        TypedQuery<Role> query = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
+        Role role = query.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
         user.setPassword(User.md5Hash(user.getPassword()));
         role.getUsers().add(user);
         List<Role> roles = new ArrayList();
@@ -46,8 +46,8 @@ public class UserFacade extends AbstractFacade<User> {
     }
 
     public void editUser(User user, String roleName) {
-        TypedQuery<Role> r = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
-        Role role = r.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
+        TypedQuery<Role> query = em.createQuery("SELECT r FROM Role r WHERE r.roleName = :roleName", Role.class);
+        Role role = query.setParameter("roleName", roleName.toUpperCase()).getSingleResult();
 
         User usr = find(user.getId());
 

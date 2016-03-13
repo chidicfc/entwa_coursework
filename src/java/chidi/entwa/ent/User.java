@@ -60,6 +60,7 @@ public class User implements Serializable {
     private String confirmPassword;
 
     @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
+    @NotNull
     private List<Role> roles;
 
     public Long getId() {
