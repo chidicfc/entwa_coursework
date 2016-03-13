@@ -35,7 +35,7 @@ public class ProjectIdea implements Serializable {
     @NotNull
     private String title;
 
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     @NotNull
     private String aimsAndObjectives;
 

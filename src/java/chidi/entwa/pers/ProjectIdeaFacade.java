@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
-    
+
     @EJB
     private SessionService sessionService;
 
@@ -41,6 +41,14 @@ public class ProjectIdeaFacade extends AbstractFacade<ProjectIdea> {
     public void createProjectIdea(ProjectIdea projectIdea, Organisation organisation) {
         Date date = new Date();
         projectIdea.setCreatedBy(sessionService.getCurrentUser());
+        projectIdea.setDateSubmitted(date);
+        projectIdea.setLastUpdated(date);
+        projectIdea.setOrganisation(organisation);
+        create(projectIdea);
+    }
+
+    public void createProject(ProjectIdea projectIdea, Organisation organisation) {
+        Date date = new Date();
         projectIdea.setDateSubmitted(date);
         projectIdea.setLastUpdated(date);
         projectIdea.setOrganisation(organisation);

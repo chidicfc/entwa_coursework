@@ -90,4 +90,11 @@ public class OrganisationFacade extends AbstractFacade<Organisation> {
         return query.getResultList();
     }
 
+    public Organisation getOrganisation(String name) {
+        TypedQuery<Organisation> query = em.createQuery("SELECT o FROM Organisation o WHERE UPPER(o.name) = :name", Organisation.class);
+        query.setParameter("name", name.toUpperCase());
+        
+        return query.getSingleResult();
+    }
+
 }
