@@ -34,6 +34,7 @@
             <web-resource-name>app</web-resource-name>
             <url-pattern>/start.xhtml</url-pattern>
             <url-pattern>/internal/*</url-pattern>
+            <url-pattern>/help/*</url-pattern>
         </web-resource-collection>
     </security-constraint>
     <security-constraint>
