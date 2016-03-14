@@ -206,6 +206,6 @@ public class SetUpBean {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Test Data created",
                         "Test Data created"));
-        return "/admin/index.xhtml";
+        return "/start.xhtml";
     }
 }

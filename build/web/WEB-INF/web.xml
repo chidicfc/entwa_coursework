@@ -19,7 +19,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>start.xhtml</welcome-file>
     </welcome-file-list>
     <login-config>
         <auth-method>FORM</auth-method>
@@ -29,6 +29,12 @@
             <form-error-page>/loginError.xhtml</form-error-page>
         </form-login-config>
     </login-config>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>app</web-resource-name>
+            <url-pattern>/start.xhtml</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin area</web-resource-name>
