@@ -1,0 +1,35 @@
+<jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource" name="EGWUONWUC" res-type="javax.sql.DataSource">
+      <property name="connectionAttributes" value=";create=true"></property>
+      <property name="DatabaseName" value="EGWUONWUC"></property>
+      <property name="severName" value="localhost"></property>
+      <property name="User" value="EGWUONWUC"></property>
+      <property name="Password" value="EGWUONWUC"></property>
+      <property name="PortNumber" value="1527"></property>
+      <property name="URL" value="jdbc:derby://localhost:1527/EGWUONWUC"></property>
+    </jdbc-connection-pool>
+    <jdbc-resource pool-name="EGWUONWUC" jndi-name="jdbc/egwuonwuc"></jdbc-resource>
+
+    <auth-realm classname="com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm" name="EgwuonwuCRealm">
+        <property name="jaas-context" value="jdbcRealm"></property>
+        <property name="password-column" value="PASSWORD"></property>
+        <property name="datasource-jndi" value="jdbc/egwuonwuc"></property>
+        <property name="group-table" value="EGWUONWUC.V_USER_ROLE"></property>
+        <property name="user-table" value="EGWUONWUC.V_USER_ROLE"></property>
+        <property name="group-name-column" value="GROUPNAME"></property>
+        <property name="digestrealm-password-enc-algorithm" value="AES"></property>
+        <property name="digest-algorithm" value="MD5"></property>
+        <property name="user-name-column" value="USERNAME"></property>
+      </auth-realm>
+
+      <resources>
+  <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource" name="java:app/derby_net_EGWUONWUC_EGWUONWUCPool" wrap-jdbc-objects="false" connection-validation-method="auto-commit" res-type="javax.sql.DataSource">
+    <property name="URL" value="jdbc:derby://localhost:1527/EGWUONWUC"></property>
+    <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"></property>
+    <property name="Password" value="EGWUONWUC"></property>
+    <property name="portNumber" value="1527"></property>
+    <property name="databaseName" value="EGWUONWUC"></property>
+    <property name="User" value="EGWUONWUC"></property>
+    <property name="serverName" value="localhost"></property>
+  </jdbc-connection-pool>
+  <jdbc-resource pool-name="java:app/derby_net_EGWUONWUC_EGWUONWUCPool" jndi-name="java:app/jdbc/egwuonwuc"></jdbc-resource>
+</resources>
