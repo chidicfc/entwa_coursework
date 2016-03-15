@@ -35,14 +35,12 @@ public class ProjectIdea implements Serializable {
     @NotNull
     private String title;
 
-    @Column(length = 1000, nullable = false)
-    @NotNull
+    @Column(length = 1000)
     private String aimsAndObjectives;
 
     private String academicQuestion;
 
-    @Column(name = "deliverables", nullable = false)
-    @NotNull
+    @Column(name = "deliverables")
     private String anticipatedDeliverables;
 
     @Column(name = "studentName")

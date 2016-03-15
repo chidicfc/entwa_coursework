@@ -40,8 +40,6 @@ public class Organisation implements Serializable {
     @NotNull
     private String postCode;
 
-    @Column(nullable = false)
-    @NotNull
     private String outline;
 
     @Column(nullable = false)
