@@ -66,7 +66,7 @@
                             <h:inputText value="#{organisationBean.organisation.postCode}" required="true" requiredMessage="post code is required"/>
 
                             <h:outputLabel value="Outline of what your organisation does:" />
-                            <h:inputText value="#{organisationBean.organisation.outline}" required="true" requiredMessage="outline is required"/>
+                            <h:inputText value="#{organisationBean.organisation.outline}"/>
 
                             <h:outputLabel value="Contact name:" />
                             <h:inputText value="#{organisationBean.organisation.contactName}" required="true" requiredMessage="contact name is required"/>
@@ -113,13 +113,13 @@
                             <h:panelGrid  styleClass="hidden"/>
 
                             <h:outputLabel value="Aims and objectives:" />
-                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}" required="true" requiredMessage="Aims and objectives is required"/>
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.aimsAndObjectives}"/>
 
                             <h:outputLabel value="Academic question to be answered (blank if unknown):" />
                             <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.academicQuestion}"/>
 
                             <h:outputLabel value="Anticipated deliverables:" />
-                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}" required="true" requiredMessage="Anticipated deliverables is required"/>
+                            <h:inputTextarea rows="4" cols="25" value="#{projectIdeaBean.projectIdea.anticipatedDeliverables}"/>
 
                             <h:outputLabel value="Student for whom project has been devised (blank if unknown):" />
                             <h:inputText value="#{projectIdeaBean.projectIdea.student}" />
