@@ -22,42 +22,33 @@
             <p:row>
                 <p:column colspan="7">
                     <h:form id="manageUser">
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="2">
 
                             <h:outputLabel value="ID:" />
-                            <h:panelGroup />
                             <h:outputLabel value="#{userBean.user.id}"/>
 
                             <h:inputHidden value="#{userBean.user.id}"/>
                             <h:panelGroup />
-                            <h:panelGroup />
 
-                            <h:outputLabel value="First Name:" />
-                            <h:outputLabel value="*" styleClass="red"/>
+                            <h:outputLabel value="First Name:" styleClass="required"/>
                             <h:inputText value="#{userBean.user.firstName}" required="true" requiredMessage="First name is required"/>
 
-                            <h:outputLabel value="Last Name:" />
-                            <h:outputLabel value="*" styleClass="red"/>
+                            <h:outputLabel value="Last Name:" styleClass="required"/>
                             <h:inputText value="#{userBean.user.lastName}" required="true" requiredMessage="Last name is required"/>
 
-                            <h:outputLabel value="Username:" />
-                            <h:outputLabel value="*" styleClass="red"/>
+                            <h:outputLabel value="Username:" styleClass="required"/>
                             <h:inputText value="#{userBean.user.username}" required="true" requiredMessage="Username is required"/>
 
-                            <h:outputLabel value="Email address:" />
-                            <h:outputLabel value="*" styleClass="red"/>
+                            <h:outputLabel value="Email address:" styleClass="required"/>
                             <h:inputText value="#{userBean.user.emailAddress}" required="true" requiredMessage="Email address is required"/>
 
-                            <h:outputLabel value="Password:" rendered="#{userBean.user.id == null}"/>
-                            <h:outputLabel value="*" styleClass="red" rendered="#{userBean.user.id == null}"/>
+                            <h:outputLabel value="Password:" rendered="#{userBean.user.id == null}" styleClass="required"/>
                             <h:inputSecret value="#{userBean.user.password}" required="true" requiredMessage="Password is required" rendered="#{userBean.user.id == null}"/>
 
-                            <h:outputLabel value="Confirm Password:" rendered="#{userBean.user.id == null}"/>
-                            <h:outputLabel value="*" styleClass="red" rendered="#{userBean.user.id == null}"/>
+                            <h:outputLabel value="Confirm Password:" rendered="#{userBean.user.id == null}" styleClass="required"/>
                             <h:inputSecret value="#{userBean.user.confirmPassword}" required="true" requiredMessage="Confirm Password is required" rendered="#{userBean.user.id == null}"/>
 
-                            <h:outputLabel value="Select role:" />
-                            <h:panelGroup />
+                            <h:outputLabel value="Select role:" styleClass="required"/>
                             <p:selectOneMenu id="roleName" value="#{userBean.roleName}" style="width:125px">
                                 <f:selectItem itemLabel="Select status" itemValue="Select role" />
                                 <f:selectItem itemLabel="ADMIN" itemValue="ADMIN" />
@@ -66,15 +57,12 @@
 
                             <h:panelGroup />
                             <h:panelGroup />
-                            <h:panelGroup />
 
-                            <h:panelGroup />
                             <h:panelGroup />
                             <h:panelGroup />
 
                             <h:commandButton value="CREATE USER" action="#{userBean.doCreateUser(userBean.user, userBean.roleName)}" rendered="#{userBean.user.id == null}"/>
                             <h:commandButton value="EDIT USER" action="#{userBean.doEditUser(userBean.user, userBean.roleName)}" rendered="#{userBean.user.id != null}"/>
-                            <h:panelGroup />
                         </h:panelGrid>
                     </h:form>
                 </p:column>

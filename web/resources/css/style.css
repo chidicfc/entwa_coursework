@@ -10,6 +10,7 @@ h3 {
     display: none;
 }
 
-.red {
+.required:after {
+    content: " *";
     color: red;
 }

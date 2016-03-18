@@ -17,13 +17,13 @@
 
     <ui:define name="content">
         <h3>Submit a project idea </h3>
-        <p:outputLabel value="In order to assist us in setting up and managing subsequent project contacts it would be helpful if the following information could be supplied." />
+        <p:outputLabel value="In order to assist us in setting up and managing subsequent project contacts it would be helpful if the following information could be supplied."/>
         <p:panelGrid>
 
             <p:row>
                 <p:column colspan="7">
                     <h:form id="selectOneOrganisation">
-                        <p:outputLabel for="selectOrganisation" value="Select organisation that the new idea is with:" /><br/><br/>
+                        <p:outputLabel for="selectOrganisation" value="Select organisation that the new idea is with:" styleClass="required"/><br/><br/>
                         <p:selectOneMenu id="selectOrganisation" value="#{organisationBean.organisation}" panelStyle="width:280px" effect="fade" style="width:260px" 
                                          filter="true" filterMatchMode="contains">
                             <f:selectItem itemLabel="Select an organisation" itemValue="" />
@@ -50,7 +50,7 @@
                     <h:form id="manageOrganisationForm">
                         <h:panelGrid columns="2">
 
-                            <h:outputLabel value="Organisation name:" />
+                            <h:outputLabel value="Organisation name:" styleClass="required"/>
                             <h:inputText value="#{organisationBean.organisation.name}" required="true" requiredMessage="name is required"/>
 
                             <h:outputLabel value="Reference number:" />
@@ -59,22 +59,22 @@
                             <h:inputHidden value="#{organisationBean.organisation.id}"/>
                             <h:panelGroup />
 
-                            <h:outputLabel value="Postal address:" />
+                            <h:outputLabel value="Postal address:" styleClass="required"/>
                             <h:inputTextarea rows="4" cols="25" value="#{organisationBean.organisation.postalAddress}" required="true" requiredMessage="postal address is required"/>
 
-                            <h:outputLabel value="Post code:" />
+                            <h:outputLabel value="Post code:" styleClass="required"/>
                             <h:inputText value="#{organisationBean.organisation.postCode}" required="true" requiredMessage="post code is required"/>
 
                             <h:outputLabel value="Outline of what your organisation does:" />
                             <h:inputText value="#{organisationBean.organisation.outline}"/>
 
-                            <h:outputLabel value="Contact name:" />
+                            <h:outputLabel value="Contact name:" styleClass="required"/>
                             <h:inputText value="#{organisationBean.organisation.contactName}" required="true" requiredMessage="contact name is required"/>
 
-                            <h:outputLabel value="Telephone number:" />
+                            <h:outputLabel value="Telephone number:" styleClass="required"/>
                             <h:inputText value="#{organisationBean.organisation.telephoneNumber}" required="true" requiredMessage="telephone number is required"/>
 
-                            <h:outputLabel value="Email address:" />
+                            <h:outputLabel value="Email address:" styleClass="required"/>
                             <h:inputText value="#{organisationBean.organisation.emailAddress}" required="true" requiredMessage="email address is required"/>
 
                             <h:panelGroup />
@@ -93,7 +93,7 @@
                     <h:form id="manageProjectIdea">
                         <h:panelGrid columns="2">
 
-                            <h:outputLabel value="Project title:" />
+                            <h:outputLabel value="Project title:" styleClass="required"/>
                             <h:inputText value="#{projectIdeaBean.projectIdea.title}" required="true" requiredMessage="Title is required"/>
 
                             <h:outputLabel value="Reference number:" />
@@ -124,7 +124,7 @@
                             <h:outputLabel value="Student for whom project has been devised (blank if unknown):" />
                             <h:inputText value="#{projectIdeaBean.projectIdea.student}" />
 
-                            <p:outputLabel for="Status" value="Status:" />
+                            <p:outputLabel for="Status" value="Status:" styleClass="required"/>
                             <p:selectOneMenu id="Status" value="#{projectIdeaBean.projectIdea.status}" style="width:125px">
                                 <f:selectItem itemLabel="Select status" itemValue="Select status" />
                                 <f:selectItems value="#{projectIdeaBean.projectIdea.projectIdeaStates}" />
