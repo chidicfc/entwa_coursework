@@ -47,7 +47,7 @@ public class ProjectIdea implements Serializable {
     private String student;
 
     public enum ProjectIdeaState {
-        PROVISIONAL, APPROVED, ALLOCATED, WITHDRAWN
+        PROVISIONAL, APPROVED, ALLOCATED
     }
 
     @Column(nullable = false)
